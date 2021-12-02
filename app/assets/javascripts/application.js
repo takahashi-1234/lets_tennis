@@ -11,9 +11,19 @@
 // about supported directives.
 //
 //= require jquery3
+
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function () {
+  $('#openModal').click(function(){
+      $('#modalArea').fadeIn();
+  });
+  $('#closeModal , #modalBg').click(function(){
+    $('#modalArea').fadeOut();
+  });
+});

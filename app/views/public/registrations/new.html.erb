@@ -18,7 +18,7 @@
           <td><%= f.select :years_of_experience,[["1年未満","1年未満"],["1年以上5年未満","1年以上5年未満"],["5年以上10年未満","5年以上10年未満"],["10年以上","10年以上"]],{},class:"form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :レベル %></td>
+          <td><%= f.label :レベル %><br><span id="openModal">詳細</spna></td>
           <td><%= f.select :level,[["初心者","初心者"],["中級者","中級者"],["中上級者","中上級者"],["上級者","上級者"]],{},class:"form-control" %></td>
         </tr>
       
@@ -48,3 +48,24 @@
     <% end %>
   </div>
 </div>
+
+<!-- モーダル部分 -->
+<section id="modalArea">
+  <div id="modalBg">
+    <div class="modalWrapper">
+      <div class="modalContents">
+        <h5>初心者</h5>
+        <p>テニス経験が全くない。またはテニス経験はあるがラリーまではできない。</p>
+        <h5>中級者</h5>
+        <p>フォア・バック共にラリーが5回以上続く。かつテニスの試合ルールを理解している。</p>
+        <h5>中上級者</h5>
+        <p>フォア・バック共にラリーが10回以上続く。かつサービスから試合形式でラリーができる。</p>
+        <h5>上級者者</h5>
+        <p>シングル・ダブルス共に試合形式でラリーができる。</p>
+      </div>
+      <div id="closeModal" class="closeModal">
+        ×
+      </div>
+    </div>
+  </div>
+</section>

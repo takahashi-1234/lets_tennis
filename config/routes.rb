@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   scope module: :public do
     resources:courts,except:[:update,:edit,:destroy]
-    resources:customers,only:[:index,:show,:new]
+    resources:customers,only:[:show,:edit,:update]
     get "/customers/favoritecourts"=>"customers#favorite_courts",as:"favorite_courts"
     resources:comments,only:[:create,:destroy]
     resources:favorites,only:[:create,:destroy]
