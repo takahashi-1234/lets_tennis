@@ -1,11 +1,9 @@
-
-<%= render "public/courts/court_map",courts:@courts,q:@q %>
-
+<%= render "public/courts/court_map",courts:@favorite_courts,q:@q %>
 <script>
   let map;
   let marker=[];
   let infoWindow=[];
-  const courts=gon.courts;
+  const courts=gon.favorite_courts;
   function initMap(){
     geocoder=new google.maps.Geocoder()
     map=new google.maps.Map(document.getElementById("map"),{
@@ -23,29 +21,10 @@
         lng:courts[i]["longitude"]
       });
       //マーカーの設定
-      icon_clay="/assets/clay.png"
-      icon_omuni="/assets/omuni.png"
-      icon_hard="/assets/hard.png"
-      
-      if (courts[i]["court_kind"]=="オムニ"){
-        marker[i]=new google.maps.Marker({
+      marker[i]=new google.maps.Marker({
         position:markerLatLng,
-        map:map,
-        icon:icon_omuni
-      });
-      }else if(courts[i]["court_kind"]=="クレー"){
-        marker[i]=new google.maps.Marker({
-        position:markerLatLng,
-        map:map,
-        icon:icon_clay
-      });
-      }else{
-        marker[i]=new google.maps.Marker({
-        position:markerLatLng,
-        map:map,
-        icon:icon_hard
-      });
-      }
+        map:map
+      })
       //情報窓の設定
       infoWindow[i]=new google.maps.InfoWindow({
         content:courts[i]["address"],

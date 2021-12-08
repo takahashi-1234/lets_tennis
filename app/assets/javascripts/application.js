@@ -11,19 +11,41 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery
+//= require select2
+//= require select2_locale_ja 
 
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery.raty.js
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 
+//モーダルの設定
 $(function () {
   $('#openModal').click(function(){
       $('#modalArea').fadeIn();
   });
   $('#closeModal , #modalBg').click(function(){
     $('#modalArea').fadeOut();
+  });
+});
+
+//sidebarの設定。toggleClassで制御
+$(document).on('turbolinks:load',function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('close');
+    });
+});
+
+$(document).on('turbolinks:load',function () {
+  $('.tab').click(function(){
+    $('.tab-active').removeClass('tab-active');
+    $(this).addClass('tab-active');
+    $('.box-show').removeClass('box-show');
+    const index=$(this).index();
+    $('.tab-box').eq(index).addClass('box-show');
   });
 });

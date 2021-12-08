@@ -1,3 +1,44 @@
 // Place all the styles related to the public/courts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#map{
+    height:100%;
+    width:70%;
+}
+.court_content{
+    width:28%;
+    overflow: scroll;
+}
+
+#show_map{
+    height:300px;
+    width:100%;
+}
+.bookmark{
+    color:red;
+}
+
+.comment_index{
+    height:70%;
+    overflow: scroll;
+}
+
+.new_comment{
+    margin-bottom:auto;
+    height:30%;
+}
+
+
+.main-content{
+    display:flex;
+    justify-content:space-between;
+    height:500px;
+}
+.left-content{
+    width:49%;
+    overflow: scroll;
+}
+.right-content{
+    width:49%;
+}

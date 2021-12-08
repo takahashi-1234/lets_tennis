@@ -1,0 +1,79 @@
+<div class="main-content">
+  <div class="court_content shadow-sm p-2 small bg-light">
+    <%= form_with model:@court,url:courts_path,local:true do |f| %>
+      <div class="mt-2">
+        <%= f.label:名称,class:"label" %>
+        <%= f.text_field:name,class:"form-control",placeholder:"名称を入力" %>
+      </div>
+      <div class="mt-2">
+        <%= f.label:コートの種類,class:"label" %><br>
+        <%= f.select:court_kind,[["オムニ","オムニ"],["クレイ","クレイ"],["ハード","ハード"]],{},class:"form-control" %><br>
+      </div>
+      <div class="mt-2">
+        <%= f.label:運営,class:"label" %><br>
+        <%= f.select:operation,[["公営","公営"],["民営","県営"]],{},class:"form-control" %><br>
+      </div>
+      <div class="mt-2">
+        <%= f.label:金額,class:"label" %><br>
+        <%= f.select:price,[["1000円未満","1000円未満"],["1000円〜2000円","1000円〜2000円"],["2000円〜3000円","2000円〜3000円"],["4000円以上","4000円以上"]],{},class:"form-control" %><br>
+      </div>
+      <div class="mt-2">
+        <%= f.label:詳細,class:"label" %><br>
+        <%= f.text_area:body,class:"form-control" %>
+      </div>
+      <div class="mt-2">
+        <%= f.label:経度緯度,class:"label" %>
+        <%= f.number_field:latitude,id:"lat",value:35.6585,readonly: true,class:"form-control" %>
+        <%= f.number_field:longitude,id:"lng",value:139.7486,readonly: true,class:"form-control" %>
+      </div>
+        <%= f.submit "登録",class:"mt-2 btn btn-primary btn-sm" %>
+        <% end %>
+  </div>
+  <div id="map" class="shadow-sm"></div>
+</div>
+
+<script>
+  let map;
+  let geocoder;
+    function initMap() {
+      geocoder = new google.maps.Geocoder()
+      // マップの初期化
+      map=new google.maps.Map(document.getElementById("map"),{
+      zoom:10,
+      center: { lat: 35.6585, lng: 139.7486 },
+      mapId: "1b786f15acc7b7be",
+      });
+      // クリックイベントを追加
+      map.addListener('click', function(e) {
+        getClickLatLng(e.latLng, map);
+      });
+    }
+    function getClickLatLng(lat_lng, map) {
+      // 座標を表示
+      document.getElementById('lat').value=lat_lng.lat();
+      document.getElementById('lng').value=lat_lng.lng();
+      // マーカーを設置
+      marker = new google.maps.Marker({
+        position: lat_lng,
+        map: map,
+      });
+      // 座標の中心をずらす
+      map.panTo(lat_lng);
+    }
+    function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

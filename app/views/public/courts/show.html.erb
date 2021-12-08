@@ -1,0 +1,108 @@
+<div class="main-content">
+  <div class="left-content bg-light p-3 shadow-sm">
+    <table class="table small">
+      <tr><td>名称</td><td><%= @court.name %></td>
+        <% if @court.favorited_by?(current_customer) %>
+          <td><%= link_to court_favorite_path(@court.id),method: :delete do %><i class="fas fa-bookmark bookmark fa-2x"></i><% end %></td>
+        <% else %>
+          <td><%= link_to court_favorites_path(@court.id),method: :post do %><i class="far fa-bookmark fa-2x"></i><% end %></td>
+        <% end %></tr>
+      <tr><td>住所</td><td><%= @court.address[12..100] %></td><td></td></tr>
+      <tr><td>コート</td><td><%= @court.court_kind %></td><td></td></tr>
+      <tr><td>運営</td><td><%= @court.operation %></td><td></td></tr>
+      <tr><td>金額</td><td><%= @court.price %></td><td></td></tr>
+      <tr><td colspan="3" id="show_map"></td></tr>
+    </table>
+  </div>
+  <div class="right-content bg-light shadow-sm">
+    <!--タブで表示を分ける -->
+    <div class="tab-border">
+      <div class="tab tab-active">活動サークル</div>
+      <div class="tab">コメント</div>
+    </div>
+    <!--活動サークルタブ -->
+    <div class="tab-box box-show">
+      <div class="p-2 circle-index">
+        <table class="table small">
+          <thead>
+            <td>サークル名</td>
+            <td>レベル</td>
+            <td>紹介</td>
+          </thead>
+          <% @circles.each do |circle| %>
+          <tr>
+            <td><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %></td>
+            <td><%= circle.level %></td>
+            <td><%= circle.body %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <!--コメントタブ -->
+    <div class="tab-box">
+      <div class="comment_index">
+        <table class="table table-hover small">
+          <% @comments.each do |comment| %>
+          <tr>
+            <td class="p-3">
+              ユーザー名:<%= comment.customer.name %><br>
+              投稿日:<%= comment.created_at.strftime('%Y/%m/%d') %><br>
+              <%= comment.comment %><br>
+              <span class="rate" data-score="<%= comment.evaluation %>">評価:</span>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="new_comment p-3">
+        <%= form_with model:@comment,url:court_comments_path(@court.id),local:true,method: :post do |f| %>
+        <%= f.text_field:comment,class:"form-control",placeholder:"コメントを入力してください" %><br>
+        <div id="rate">
+          <%= f.hidden_field:evaluation,value:"score" %>
+        </div>
+        <%= f.submit "コメントする",class:"btn btn-primary btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 星評価のjavascript -->
+<script>
+//投稿部分の記述
+  $('#rate').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>" ,
+    scoreName: 'comment[evaluation]',
+    half: true
+  })
+//コメント一覧の記述
+  $('.rate').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
+
+<!-- googlemapの表示・マーカーの表示 -->
+<script>
+let map;
+let marker;
+let court=gon.court
+  function initMap(){
+    let map=new google.maps.Map(document.getElementById('show_map'),{
+      zoom:16,
+      center:{lat:court["latitude"],lng:court["longitude"]},
+      mapId:"1b786f15acc7b7be"
+    });
+    marker=new google.maps.Marker({
+      position:{lat:court["latitude"],lng:court["longitude"]},
+      map:map
+    })
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

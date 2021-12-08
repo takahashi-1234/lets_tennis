@@ -6,18 +6,21 @@ Rails.application.routes.draw do
     registrations:"public/registrations",
     sessions:"public/sessions"
   }
+  root to:"public/courts#index"
   
   namespace:admin do
     resources:courts,except:[:new,:create]
   end
   scope module: :public do
-    resources:courts,except:[:update,:edit,:destroy]
-    resources:customers,only:[:show,:edit,:update]
+    resources:courts,except:[:update,:edit,:destroy] do
+      resources:comments,only:[:create,:destroy]
+      resources:favorites,only:[:create,:destroy]
+    end
     get "/customers/favoritecourts"=>"customers#favorite_courts",as:"favorite_courts"
-    resources:comments,only:[:create,:destroy]
-    resources:favorites,only:[:create,:destroy]
-    resources:circles
-    resources:events,except:[:index,:edit,:update]
+    resources:customers,only:[:show,:edit,:update]
+    resources:circles do
+      resources:events,except:[:index,:edit,:update]
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

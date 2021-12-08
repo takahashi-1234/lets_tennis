@@ -11,30 +11,97 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand ml-5" href="#"><%= image_tag("logo-icon.png") %><i class="font-weight-bold ml-2">Lets! Tennis</i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <% if customer_signed_in? %>
-              <li class="nav-item mr-5"><%= link_to "ログアウト",destroy_customer_session_path,method: :delete,class:"nav-link" %></li>
-              <li class="nav-item mr-5">マイページ</li>
-            <% elsif admin_signed_in? %>
-              <li class="nav-item mr-5"><%= link_to "ログアウト",destroy_admin_session_path,class:"nav-link" %></li>
-            <% else %>
-              <li class="nav-item mr-5"><%= link_to "新規登録",new_customer_registration_path,class:"nav-link" %></li>
-              <li class="nav-item mr-5"><%= link_to "ログイン",new_customer_session_path,class:"nav-link" %></li>
-            <% end %>
-          </ul>
+  <body class="d-flex flex-column h-100">
+    <div class="wrapper mb-auto">
+    <!-- サイドバーの開始 -->
+      <nav id="sidebar" class="close"><!--デフォルトをクローズ -->
+        <div class="px-3">
+          <h2 class="my-5 font-weight-bold">MENU</h2>
+          <div class="small">
+            <table class="table table-hover">
+              <tr><td><%= link_to "ホーム",root_path %></td></tr>
+              <tr>
+                <% if customer_signed_in? || admin_signed_in? %>
+                  <td><%= link_to "ブックマーク",favorite_courts_path %></td>
+                <% else %>
+                  <td><%= link_to "ブックマーク",new_customer_session_path %></td>
+                <% end %>
+              </tr>
+              <tr><td><%= link_to "サークルのを探す",circles_path %></td></tr>
+              <tr>
+                <% if customer_signed_in? || admin_signed_in? %>
+                  <td><%= link_to "テニスコートを登録する",new_court_path %></td>
+                <% else %>
+                  <td><%= link_to "テニスコートを登録する",new_customer_session_path %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <% if customer_signed_in? || admin_signed_in? %>
+                  <td><%= link_to "サークルを登録する",new_circle_path %></td>
+                <% else %>
+                  <td><%= link_to "サークルを登録する",new_customer_session_path %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <% if customer_signed_in? || admin_signed_in? %>
+                  <td><%= link_to "マイページ",customer_path(current_customer.id) %></td>
+                <% else %>
+                  <td><%= link_to "マイページ",new_customer_session_path %></td>
+                <% end %>
+              </tr>
+            </table>
+            <div mt-3>
+              <p class="p-3 bg-light rounded shadow-sm">テニスコート・サークルの登録、お気に入りを利用する場合は<%= link_to "ログイン",new_customer_session_path,class:"font-weight-bold" %>が必要となります。</p>
+            </div>
+          </div>
         </div>
       </nav>
-    </header>
-    <main>
-      <%= yield %>
-    </main>
+      <!-- サイドバーの終了 -->
+      <!-- メイン部の開始 -->
+      <div id="content">
+        <!-- navの開始 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" id="sidebaraction">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            
+            <a class="navbar-brand ml-5" href="/"><%= image_tag("logo-icon.png") %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <!-- googlemapの検索窓はgooglemapが表示される画面のみにする -->
+                <% if %w[root new_court].any?{|name|current_page?(send("#{name}_path"))} %>
+                  <li class=" nav-item mr-3">
+                    <input id="address" type="text-box" value="東京都港区高輪4-10-30" class="rounded mr-3 mt-1" size="50">
+                    <input type="button" value="検索" onclick="codeAddress()" class="btn text-light mr-3 map-search">
+                  </li>
+                <% end %>
+                <% if customer_signed_in? %>
+                  <li class="nav-item mr-3"><%= link_to "ログアウト",destroy_customer_session_path,method: :delete,class:"nav-link" %></li>
+                <% elsif admin_signed_in? %>
+                  <li class="nav-item mr-5"><%= link_to "ログアウト",destroy_admin_session_path,class:"nav-link" %></li>
+                <% else %>
+                  <li class="nav-item mr-5"><%= link_to "新規登録",new_customer_registration_path,class:"nav-link" %></li>
+                  <li class="nav-item mr-5"><%= link_to "ログイン",new_customer_session_path,class:"nav-link" %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- navの終了 -->
+        <main class="mt-4 mb-auto">
+          <%= yield %>
+        </main>
+      <!-- メイン部の終了 -->
+      </div>
+    </div>
+    <footer class="py-2">
+      <div class="text-center text-white">
+        <p>© Copyright 2021 <em>Let!Tennis</em> All rights reserved.</p>
+        </div>
+    </footer>
   </body>
 </html>

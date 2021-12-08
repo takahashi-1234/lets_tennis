@@ -9,49 +9,147 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
+ *= require select2
+ *= require select2-bootstrap
+
  *= require_tree .
  *= require_self
  */
 @import"bootstrap";
 
-#modalArea {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+
+body{
+  background-color:#ebefee;
+  //薄いグレーを指定
+}
+footer{
+  background-color:#a5c9d8;
+}
+.common-parts-info{
+  width:80%;
+  margin:0 auto;
+}
+.map-search{
+  background-color:#73d5bc;
+}
+thead{
+  font-weight:bold;
 }
 
+
+//モーダル部分のスタイル
+
+#modalArea {
+  display:none; //デフォルト非表示
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+//モーダル展開時の背景
 #modalBg {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(30,30,30,0.9);
+  width:100%;
+  height:100%;
+  background-color:rgba(30,30,30,0.9);
 }
 
 .modalWrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position:absolute;
+  top:50%;
+  left:50%;
   transform:translate(-50%,-50%);
-  width: 70%;
-  max-width: 500px;
-  padding: 10px 30px;
-  background-color: #fff;
+  width:70%;
+  max-width:500px;
+  padding:10px 30px;
+  background-color:#fff;
 }
 
+//モーダルを閉じるためのボタン
 .closeModal {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  cursor: pointer;
+  position:absolute;
+  top:0.5rem;
+  right:1rem;
+  cursor:pointer;
 }
 
 #openModal {
   transform:translate(-50%,-50%);
-  cursor: pointer;
+  cursor:pointer;
 }
 #openModal:hover{
   font-weight:bold;
+}
+
+
+//サイドバー部分のスタイル
+.wrapper {
+    display:flex;
+    align-items:stretch;
+}
+
+#sidebar.close {
+    margin-left:-250px;
+}
+
+
+#sidebar {
+    min-width:250px;
+    max-width:250px;
+    background-color:#73d5bc;
+    color:#172b26;
+    transition:all 0.3s;
+}
+#sidebarCollapse{
+    background-color:#73d5bc;
+    color:white;
+}
+#content {
+    width:100%;
+    padding:20px;
+    transition:all 0.3s default;
+}
+.tab-active {
+  color: #FFF;
+  background: #73d5bc;
+  font-weight:bold;
+}
+
+.tab-box{
+  display:none;
+}
+
+.box-show{
+  display:inline;
+}
+.tab-border{
+  display:flex;
+  border-bottom:solid 2px #73d5bc;
+}
+
+.tab{
+  padding:10px;
+}
+
+.comment_index{
+    height:60%;
+    overflow: scroll;
+}
+
+.new_comment{
+    margin-bottom:auto;
+    height:40%;
+}
+
+.circle-index{
+  overflow:scroll;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+table td {
+  word-break: break-all;
 }

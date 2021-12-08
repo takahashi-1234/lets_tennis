@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="left-content bg-light p-3 shadow-sm">
+      <div class="mb-3">
+        <%= link_to "一覧に戻る",circles_path %>
+      </div>
+      <table class="table small">
+        <tr><td class="col-lg-4">サークル名</td><td class="col-lg-8"><%= @circle.circle_name %></td></tr>
+        <tr><td>紹介</td><td><%= @circle.body %></td></tr>
+        <tr><td>レベル<br><span id="openModal">詳細</spna></td><td><%= @circle.level %></td></tr>
+        <tr><td>メンバー</td><td><%= @circle.member %></td></tr>
+        <tr><td>主な活動場所</td><td><%= @circle.court.name %></td></tr>
+        <tr><td colspan="2" id="show_map"></td></tr>
+        <% if @circle.customer==current_customer %>
+        <tr>
+          <td rowspan=4>管理者機能</td>
+        </tr>
+        <tr>
+          <td><%= link_to "編集する",edit_circle_path(@circle.id) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "削除する",circle_path(@circle.id),method: :delete,"data-confirm"=>"削除していいですか？" %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "イベントを投稿する",new_circle_event_path(@circle.id) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="right-content bg-light shadow-sm">
+      <!--タブで表示を分ける -->
+      <div class="tab-border">
+        <div class="tab tab-active">イベント</div>
+        <div class="tab">コメント</div>
+      </div>
+      <div class="p-3">
+        <table class="table tab-box box-show small">
+          <thead>
+            <td class="col-lg-4">イベント名</td>
+            <td class="col-lg-4">内容</td>
+            <td class="col-lg-2">開催日</td>
+            <td class="col-lg-2">締切</td>
+          </thead>
+          <% @circle.events.each do |event| %>
+          <tr>
+            <td><%= event.title %></td>
+            <td><%= event.body %></td>
+            <td><%= event.event_date %></td>
+            <% if (event.deadline<=5) && (event.deadline>=1) %>
+              <td class="font-weight-bold text-danger">あと<%= event.deadline %>日</td>
+            <% else %>
+            <td class="font-weight-bold">あと<%= event.deadline %>日</td>
+            <% end %>
+          </tr>
+          <% end %>
+        </table>
+        
+        <table class="table tab-box">
+          <thead><td>コメント</td></thead>
+        </table>
+      </div>
+    </div>
+</div>
+
+<%= render "public/customers/modal" %>
+
+<script>
+let map;
+let marker;
+let court=gon.court
+  function initMap(){
+    let map=new google.maps.Map(document.getElementById('show_map'),{
+      zoom:16,
+      center:{lat:court["latitude"],lng:court["longitude"]},
+      mapId:"1b786f15acc7b7be"
+    });
+    marker=new google.maps.Marker({
+      position:{lat:court["latitude"],lng:court["longitude"]},
+      map:map
+    })
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="common-parts-info bg-light">
+    <table class="table table-hover w-100 small">
+      <thead>
+        <td class="col-lg-3">サークル名</td>
+        <td class="col-lg-2">レベル</td>
+        <td class="col-lg-4">紹介</td>
+        <td class="col-lg-3">活動場所</td>
+      </thead>
+      <% @circles.each do |circle| %>
+      <tr>
+        <td><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %></td>
+        <td><%= circle.level %></td>
+        <td class="text-truncate"><%= circle.body %></td>
+        <td><%= circle.court.name %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

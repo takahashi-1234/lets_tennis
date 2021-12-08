@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="common-parts-info  bg-light">
+    <%= form_with model:@circle,url:"/circles",local:true do |f| %>
+    <table class="table table-hover w-100 small">
+      <tr>
+        <td><%= f.label :団体名 %></td>
+        <td><%= f.text_field :circle_name, autofocus: true,placeholder:"みんなのテニス",class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :代表者 %></td>
+        <td><%= f.text_field :leader_name,placeholder:"テニス太郎",class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :紹介文 %></td>
+        <td><%= f.text_area :body,class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :人数 %></td>
+        <td><%= f.select :member,[["2~10人","2~10人"],["10~20人","10~20人"],["20~30人","20~30人"],["30~40人","30~40人"],["40人以上","40人以上"]],{}, class:"form-control" %></td>
+      </tr>
+      <tr>
+      <tr>
+        <td><%= f.label :レベル %><br><span id="openModal">詳細</spna></td>
+        <td><%= f.select :level,[["初心者","初心者"],["中級者","中級者"],["中上級者","中上級者"],["上級者","上級者"]],{},class:"form-control" %></td>
+      </tr>
+        <td><%= f.label :活動コート %></td>
+        <td><%= f.select :court_id, options_from_collection_for_select(Court.all,:id,:name),{},class:"form-control searchable" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :email %></td>
+        <td><%= f.email_field :email,class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "登録する",class:"btn btn-primary btn-sm" %></td>
+        <td></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>
+
+<%= render "public/customers/modal" %>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="common-parts-info  bg-light">
+    <%= form_with model:@event,url:circle_events_path,local:true do |f| %>
+    <table class="table w-100">
+      <tr>
+        <td><%= f.label:タイトル %></td>
+        <td><%= f.text_field:title,class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label:内容 %></td>
+        <td><%= f.text_area:body,class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label:日程 %></td>
+        <td><%= f.date_field:event_date,class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label:締切日 %></td>
+        <td><%= f.date_field:event_deadline,class:"form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "投稿する",class:"btn btn-primary" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>
