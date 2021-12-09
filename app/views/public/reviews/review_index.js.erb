@@ -1,0 +1,4 @@
+<!--id="comments_areaにをrenderで指定した部分テンプレートに更新-->
+$("#comment_index_template").html("<%= j(render 'public/comments/comment_index', comments: @reviews) %>");
+<!--フォームを送信したあとにフォームの値を空にします-->
+$("#new_review_template").html("<%= j(render 'public/reviews/new_review', review: @review,circle: @circle) %>");

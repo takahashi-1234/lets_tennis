@@ -29,34 +29,45 @@
     <div class="right-content bg-light shadow-sm">
       <!--タブで表示を分ける -->
       <div class="tab-border">
-        <div class="tab tab-active">イベント</div>
-        <div class="tab">コメント</div>
+        <div class="tab tab-active">活動サークル</div>
+        <div class="tab">コメント(<%= @reviews.count %>)</div>
       </div>
-      <div class="p-3">
-        <table class="table tab-box box-show small">
-          <thead>
-            <td class="col-lg-4">イベント名</td>
-            <td class="col-lg-4">内容</td>
-            <td class="col-lg-2">開催日</td>
-            <td class="col-lg-2">締切</td>
-          </thead>
-          <% @circle.events.each do |event| %>
-          <tr>
-            <td><%= event.title %></td>
-            <td><%= event.body %></td>
-            <td><%= event.event_date %></td>
-            <% if (event.deadline<=5) && (event.deadline>=1) %>
-              <td class="font-weight-bold text-danger">あと<%= event.deadline %>日</td>
-            <% else %>
-            <td class="font-weight-bold">あと<%= event.deadline %>日</td>
-            <% end %>
-          </tr>
-          <% end %>
-        </table>
-        
-        <table class="table tab-box">
-          <thead><td>コメント</td></thead>
-        </table>
+      <!--活動サークルタブ -->
+        <div class="tab-box box-show">
+          <div class="p-2 circle-index">
+            <table class="table small">
+              <thead>
+                <td class="col-lg-3">イベント名</td>
+                <td class="col-lg-5">内容</td>
+                <td class="col-lg-2">開催日</td>
+                <td class="col-lg-2">締切</td>
+              </thead>
+              <% @circle.events.each do |event| %>
+              <tr>
+                <td><%= event.title %></td>
+                <td><%= event.body %></td>
+                <td><%= event.event_date %></td>
+                <% if (event.deadline<=5) && (event.deadline>=1) %>
+                  <td class="font-weight-bold text-danger">あと<%= event.deadline %>日</td>
+                <% else %>
+                <td class="font-weight-bold">あと<%= event.deadline %>日</td>
+                <% end %>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+        <!--コメントタブ -->
+        <div class="tab-box">
+          <!-- コメント一覧の部分テンプレート -->
+          <span id="comment_index_template">
+            <%= render "public/comments/comment_index",comments:@reviews %>
+          </span>
+          <!-- コメント投稿の部分テンプレート -->
+          <span id="new_review_template">
+            <%= render "public/reviews/new_review",review:@review,circle:@circle %>
+          </span>
+        </div>
       </div>
     </div>
 </div>

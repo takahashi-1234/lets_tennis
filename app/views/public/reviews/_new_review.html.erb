@@ -1,0 +1,21 @@
+<div class="new_comment p-3">
+  <%= form_with model:review,url:circle_reviews_path(circle.id),remote:true,method: :post do |f| %>
+  <%= f.text_field:comment,class:"form-control",placeholder:"コメントを入力してください" %><br>
+  <div id="rate">
+    <%= f.hidden_field:evaluation,value:"score" %>
+  </div>
+  <%= f.submit "コメントする",class:"btn btn-primary btn-sm" %>
+  <% end %>
+</div>
+
+<script>
+  //星評価のjavascript
+$('#rate').raty({
+  starOn: "<%= asset_path('star-on.png') %>",
+  starOff: "<%= asset_path('star-off.png') %>",
+  starHalf: "<%= asset_path('star-half.png') %>" ,
+  scoreName: 'review[evaluation]',
+  half: true
+});
+
+</script>

@@ -1,0 +1,4 @@
+<!--部分テンプレートを更新-->
+$("#comment_index_template").html("<%= j(render 'public/comments/comment_index', comments: @comments) %>");
+<!--フォームを送信したあとに空にする-->
+$("#new_comment_template").html("<%= j(render 'public/comments/new_comment', comment: @comment,court: @court) %>");

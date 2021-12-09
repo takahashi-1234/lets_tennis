@@ -8,8 +8,9 @@ class Public::CourtsController < ApplicationController
     @court=Court.find(params[:id])
     gon.court=Court.find(params[:id])
     @comment=Comment.new
-    @comments=@court.comments
+    @comments=@court.comments.order(created_at: :desc)
     @circles=Circle.where(court_id:@court.id)
+    @report=Report.new
   end
   def new
     @court=Court.new

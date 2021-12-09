@@ -27,6 +27,20 @@
                   <td><%= link_to "ブックマーク",new_customer_session_path %></td>
                 <% end %>
               </tr>
+              <tr>
+                <td><a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">お気に入りコート</a></td>
+                <tr class="collapse list-unstyled" id="pageSubmenu">
+                    <td>
+                        <a href="#">Page 1</a>
+                    </td>
+                    <td>
+                        <a href="#">Page 2</a>
+                    </td>
+                    <td>
+                        <a href="#">Page 3</a>
+                    </td>
+                </tr>
+              </tr>
               <tr><td><%= link_to "サークルのを探す",circles_path %></td></tr>
               <tr>
                 <% if customer_signed_in? || admin_signed_in? %>

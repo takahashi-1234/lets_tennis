@@ -1,0 +1,25 @@
+<div class="comment_index">
+    <table class="table table-hover small">
+      <% comments.each do |comment| %>
+      <tr>
+        <td class="p-3">
+          ユーザー名:<%= comment.customer.name %><br>
+          投稿日:<%= comment.created_at.strftime('%Y/%m/%d') %><br>
+          <%= comment.comment %><br>
+          <span class="rate" data-score="<%= comment.evaluation %>">評価:</span>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+ </div>
+ 
+ <script>
+//コメント一覧の記述
+  $('.rate').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

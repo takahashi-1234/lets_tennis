@@ -9,6 +9,6 @@ class Customer < ApplicationRecord
   has_many:reports,dependent: :destroy
   has_many:circles,dependent: :destroy
   has_many:courts,dependent: :destroy
-  
+  has_many:reviews,dependent: :destroy
   has_many:favorite_courts,through: :favorites,source: :court
 end

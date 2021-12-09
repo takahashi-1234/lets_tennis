@@ -12,6 +12,8 @@ class Public::CirclesController < ApplicationController
   def show
     @circle=Circle.find(params[:id])
     gon.court=@circle.court
+    @reviews=@circle.reviews.order(created_at: :desc)
+    @review=Review.new
   end
   
   def index
