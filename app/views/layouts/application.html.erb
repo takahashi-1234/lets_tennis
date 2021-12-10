@@ -16,7 +16,9 @@
     <!-- サイドバーの開始 -->
       <nav id="sidebar" class="close"><!--デフォルトをクローズ -->
         <div class="px-3">
-          <h2 class="my-5 font-weight-bold">MENU</h2>
+          <div class="sidebar-logo">
+            <%= image_tag "logotennis.png",:size=>"125x110" %>
+          </div>
           <div class="small">
             <table class="table table-hover">
               <tr><td><%= link_to "ホーム",root_path %></td></tr>
@@ -26,20 +28,6 @@
                 <% else %>
                   <td><%= link_to "ブックマーク",new_customer_session_path %></td>
                 <% end %>
-              </tr>
-              <tr>
-                <td><a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">お気に入りコート</a></td>
-                <tr class="collapse list-unstyled" id="pageSubmenu">
-                    <td>
-                        <a href="#">Page 1</a>
-                    </td>
-                    <td>
-                        <a href="#">Page 2</a>
-                    </td>
-                    <td>
-                        <a href="#">Page 3</a>
-                    </td>
-                </tr>
               </tr>
               <tr><td><%= link_to "サークルのを探す",circles_path %></td></tr>
               <tr>
@@ -77,10 +65,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" id="sidebaraction">
           <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn">
-              <i class="fas fa-ellipsis-v"></i>
+              <i class="fas fa-bars"></i>
             </button>
             
-            <a class="navbar-brand ml-5" href="/"><%= image_tag("logo-icon.png") %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+            <a class="navbar-brand ml-5" href="/"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
