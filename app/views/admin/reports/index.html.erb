@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="common-parts-info bg-light">
+    <table class="table table-hover w-100 small">
+      <thead>
+        <td class="col-lg-2">対象コート</td>
+        <td class="col-lg-2">報告内容</td>
+        <td class="col-lg-4">詳細</td>
+        <td class="col-lg-2">対応フラグ</td>
+        <td class="col-lg-2">対応フラグ</td>
+      </thead>
+      <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.court.name %></td>
+        <td><%= report.report_content %></td>
+        <td><%= report.report_detail %></td>
+        <% if report.is_supported %>
+          <td>対応済み</td>
+          <td><%= link_to "未対応",admin_report_path(report.id),method: :patch,class:"btn btn-success btn-sm" %></td>
+        <% else %>
+          <td>未対応</td>
+          <td><%= link_to "対応済",admin_report_path(report.id),method: :patch,class:"btn btn-primary btn-sm" %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

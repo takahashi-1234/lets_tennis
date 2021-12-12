@@ -1,5 +1,9 @@
-<div class="container">
-  <div class="customer-info bg-light">
+
+  <div class="row top-img">
+  <div class="col-lg-6">
+    <p>ようこそ</p>
+  </div>
+  <div class="col-lg-6 bg-light">
     <h2 class="pt-2 pl-2">ログイン</h2>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -31,4 +35,4 @@
       </table>
     <% end %>
   </div>
-</div>
+  </div>
