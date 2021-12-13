@@ -10,12 +10,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <body>
   <% if current_page?(new_customer_session_path)%>
-    <body class="top-img-pic">
+    <div class="wrapper top-img-pic">
   <% else %>
-    <body class="common-body">
+    <div class="wrapper common-body">
   <% end %>
-    <div class="wrapper mb-auto">
     <!-- サイドバーの開始 -->
       <nav id="sidebar" class="close"><!--デフォルトをクローズ -->
         <div class="px-3">
@@ -67,11 +68,12 @@
           <div class="container-fluid">
             <% unless admin_signed_in? %>
             <button type="button" id="sidebarCollapse" class="btn">
-              <i class="fas fa-bars"></i>
+              <i class="fas fa-chevron-circle-down sidebar-icon fa-2x" style="color:#73d5bc;"></i>
             </button>
             <% end %>
             
-            <a class="navbar-brand ml-5" href="#"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+            <div class="header-nav">
+            <a class="navbar-brand ml-2" href="#"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -80,7 +82,7 @@
                 <!-- googlemapの検索窓はgooglemapが表示される画面のみにする -->
                 <% if %w[root new_court].any?{|name|current_page?(send("#{name}_path"))} %>
                   <li class=" nav-item mr-3">
-                    <input id="address" type="text-box" value="東京都港区高輪4-10-30" class="rounded mr-3 mt-1" size="50">
+                    <input id="address" type="text-box" value="東京都港区高輪4-10-30" class="rounded mr-3 mt-1" size="40">
                     <input type="button" value="検索" onclick="codeAddress()" class="btn text-light mr-3 map-search">
                   </li>
                 <% end %>
@@ -95,6 +97,7 @@
                 <% end %>
               </ul>
             </div>
+            </div>
           </div>
         </nav>
         <!-- navの終了 -->
@@ -104,7 +107,7 @@
       <!-- メイン部の終了 -->
       </div>
     </div>
-    <footer class="py-2">
+    <footer>
       <div>
         <p>© Copyright 2021 <em>Let!Tennis</em> All rights reserved.</p>
         </div>

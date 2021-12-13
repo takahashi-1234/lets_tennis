@@ -37,6 +37,7 @@ $(function () {
 $(document).on('turbolinks:load',function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('close');
+        $('.sidebar-icon').toggleClass('open');
     });
 });
 

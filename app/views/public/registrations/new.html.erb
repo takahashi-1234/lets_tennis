@@ -4,7 +4,24 @@
     
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
-      <table class="table table-borderless w-100">
+      <table class="table table-borderless">
+        <tr>
+          <td><%= f.label :名前 %></td>
+          <td><%= f.text_field :name, autofocus: true,placeholder:"テニス太郎",class:"form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :名前 %></td>
+          <td><%= f.text_field :name, autofocus: true,placeholder:"テニス太郎",class:"form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :名前 %></td>
+          <td><%= f.text_field :name, autofocus: true,placeholder:"テニス太郎",class:"form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :名前 %></td>
+          <td><%= f.text_field :name, autofocus: true,placeholder:"テニス太郎",class:"form-control" %></td>
+        </tr>
+        
         <tr>
           <td><%= f.label :名前 %></td>
           <td><%= f.text_field :name, autofocus: true,placeholder:"テニス太郎",class:"form-control" %></td>
@@ -21,12 +38,10 @@
           <td><%= f.label :レベル %><br><span id="openModal">詳細</spna></td>
           <td><%= f.select :level,[["初心者","初心者"],["中級者","中級者"],["中上級者","中上級者"],["上級者","上級者"]],{},class:"form-control" %></td>
         </tr>
-      
         <tr>
           <td><%= f.label :メールアドレス %></td>
           <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"sample@example.com",class:"form-control" %></td>
         </tr>
-      
         <tr>
           <td><%= f.label :パスワード %></td>
           <% if @minimum_password_lengtr %>
@@ -34,12 +49,10 @@
           <% end %><br />
           <td><%= f.password_field :password, autocomplete: "new-password",class:"form-control" %></td>
         </tr>
-      
         <tr>
           <td><%= f.label :パスワード（確認） %></td>
           <td><%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control" %></td>
         </tr>
-      
         <tr>
           <td><%= f.submit "新規登録" ,class:"btn btn-primary" %></td>
           <td></td>

@@ -17,23 +17,18 @@
  */
 @import"bootstrap";
 
-
+//共通部分
+body{
+  position: relative;
+}
 .common-body{
   background-color:#ebefee;
   //薄いグレーを指定
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 60px;
-  box-sizing: border-box;
 }
 .top-img-pic{
   background-image:url(athletes-g0d494f7b5_1920.jpg);
   background-size:cover;
   background-position:center;
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 60px;
-  box-sizing: border-box;
 }
 footer{
   background-color:#a5c9d8;
@@ -42,18 +37,99 @@ footer{
   width: 100%;
   color:white;
   text-align:center;
+  padding:10px 0;
 }
 .common-parts-info{
   width:80%;
   margin:0 auto;
 }
+.customer-info{
+  width:60%;
+  height:100%;
+  margin:auto;
+}
+.bookmark{
+    color:red;
+}
+
+.comment_index{
+    height:60%;
+    overflow: scroll;
+}
+
+.new_comment{
+    margin-bottom:auto;
+    height:40%;
+}
+
+.circle-index{
+  overflow:scroll;
+}
+
+.main-content{
+    display:flex;
+    justify-content:space-between;
+    height:600px;
+}
+.left-content{
+    width:49%;
+    overflow: scroll;
+}
+.right-content{
+    width:49%;
+}
+  //サイドバー部分のスタイル
+.wrapper {
+  display:flex;
+  align-items:stretch;
+  min-height: 100vh;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.sidebar-icon{
+  transform: rotate(-90deg);
+}
+i.open{
+  transform: rotate(90deg);
+}
+
+#sidebar.close {
+    margin-left:-250px;
+}
+
+#sidebar {
+  min-width:250px;
+  max-width:250px;
+  background-color:#73d5bc;
+  color:#172b26;
+  transition:all 0.3s;
+}
+
+#content {
+  width:100%;
+  padding:20px;
+  transition:all 0.3s default;
+}
+
+//地図関連
+#map{
+    height:100%;
+    width:70%;
+}
+.court_content{
+    width:28%;
+    overflow: scroll;
+}
+
+#show_map{
+    height:300px;
+    width:100%;
+}
+
 .map-search{
   background-color:#73d5bc;
 }
-thead{
-  font-weight:bold;
-}
-
 
 //モーダル部分のスタイル
 
@@ -100,33 +176,7 @@ thead{
 }
 
 
-//サイドバー部分のスタイル
-.wrapper {
-  display:flex;
-  align-items:stretch;
-}
 
-#sidebar.close {
-    margin-left:-250px;
-}
-
-
-#sidebar {
-  min-width:250px;
-  max-width:250px;
-  background-color:#73d5bc;
-  color:#172b26;
-  transition:all 0.3s;
-}
-#sidebarCollapse{
-  background-color:#73d5bc;
-  color:white;
-}
-#content {
-  width:100%;
-  padding:20px;
-  transition:all 0.3s default;
-}
 
 //タブの切り替えのデザイン
 .tab{
@@ -156,20 +206,9 @@ thead{
 }
 //タブはここまで
 
-.comment_index{
-    height:60%;
-    overflow: scroll;
-}
 
-.new_comment{
-    margin-bottom:auto;
-    height:40%;
-}
 
-.circle-index{
-  overflow:scroll;
-}
-
+//テーブル関連
 table {
   width: 100%;
   table-layout: fixed;
@@ -177,6 +216,9 @@ table {
 
 table td {
   word-break: break-all;
+}
+thead{
+  font-weight:bold;
 }
 
 .report-form{
@@ -188,4 +230,10 @@ table td {
   text-align:center;
   height:200px;
   line-height:200px;
+}
+
+.header-nav{
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
 }
