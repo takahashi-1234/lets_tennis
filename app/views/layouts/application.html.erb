@@ -71,7 +71,7 @@
             </button>
             <% end %>
             
-            <a class="navbar-brand ml-5" href="/"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+            <a class="navbar-brand ml-5" href="#"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -88,6 +88,8 @@
                   <li class="nav-item mr-3"><%= link_to "ログアウト",destroy_customer_session_path,method: :delete,class:"nav-link" %></li>
                 <% elsif admin_signed_in? %>
                   <li class="nav-item mr-5"><%= link_to "ログアウト",destroy_admin_session_path,method: :delete,class:"nav-link" %></li>
+                  <li class="nav-item mr-5"><%= link_to "報告一覧",admin_root_path,class:"nav-link" %></li>
+                  <li class="nav-item mr-5"><%= link_to "会員一覧",admin_customer_index_path,class:"nav-link" %></li>
                 <% else %>
                   <li class="nav-item mr-5"><%= link_to "ログイン",new_customer_session_path,class:"nav-link" %></li>
                 <% end %>
