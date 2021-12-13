@@ -10,15 +10,15 @@
       </thead>
       <% @reports.each do |report| %>
       <tr>
-        <td><%= report.court.name %></td>
+        <td><%= link_to  edit_admin_court_path(report.court.id) do %><%= report.court.name %><% end %></td>
         <td><%= report.report_content %></td>
         <td><%= report.report_detail %></td>
         <% if report.is_supported %>
           <td>対応済み</td>
-          <td><%= link_to "未対応",admin_report_path(report.id),method: :patch,class:"btn btn-success btn-sm" %></td>
+          <td><%= link_to "対応済",admin_report_path(report.id),method: :patch,class:"btn btn-success btn-sm" %></td>
         <% else %>
           <td>未対応</td>
-          <td><%= link_to "対応済",admin_report_path(report.id),method: :patch,class:"btn btn-primary btn-sm" %></td>
+          <td><%= link_to "未対応",admin_report_path(report.id),method: :patch,class:"btn btn-primary btn-sm" %></td>
         <% end %>
       </tr>
       <% end %>

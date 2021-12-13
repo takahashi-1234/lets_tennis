@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   root to:"public/courts#index"
   
   namespace:admin do
-    root to:"homes#top"
+    root to:"reports#index"
     resources:courts,except:[:new,:create,:index]
-    resources:reports,only:[:index,:edit,:update]
+    resources:reports,only:[:edit,:update]
     resources:customer,except:[:new,:create,:destroy]
   end
   scope module: :public do
