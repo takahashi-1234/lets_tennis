@@ -25,38 +25,58 @@
           </div>
           <div class="small">
             <table class="table table-hover">
-              <tr><td><%= link_to "ホーム",root_path %></td></tr>
+              <% if customer_signed_in? %>
+              
               <tr>
-                <% if customer_signed_in? %>
-                  <td><%= link_to "ブックマーク",favorite_courts_path %></td>
-                <% else %>
-                  <td><%= link_to "ブックマーク",new_customer_session_path %></td>
-                <% end %>
-              </tr>
-              <tr><td><%= link_to "サークルのを探す",circles_path %></td></tr>
-              <tr>
-                <% if customer_signed_in? %>
-                  <td><%= link_to "テニスコートを登録する",new_court_path %></td>
-                <% else %>
-                  <td><%= link_to "テニスコートを登録する",new_customer_session_path %></td>
-                <% end %>
+                <td><%= link_to "ホーム",root_path %></td>
               </tr>
               <tr>
-                <% if customer_signed_in? %>
-                  <td><%= link_to "サークルを登録する",new_circle_path %></td>
-                <% else %>
-                  <td><%= link_to "サークルを登録する",new_customer_session_path %></td>
-                <% end %>
+                <td><%= link_to "ブックマーク",favorite_courts_path %></td>
               </tr>
               <tr>
-                <% if customer_signed_in? %>
-                  <td><%= link_to "マイページ",customer_path(current_customer.id) %></td>
-                <% end %>
+                <td><%= link_to "サークルのを探す",circles_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "テニスコートを登録する",new_court_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "サークルを登録する",new_circle_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "マイページ",customer_path(current_customer.id) %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "ログアウト",destroy_customer_session_path,method: :delete %></td>
               </tr>
             </table>
             <div mt-3>
+              <p class="p-3 bg-light rounded shadow-sm">ようこそ<%= current_customer.name %>さん。<br>すべてのサービスをご利用いただけます。</p>
+            </div>
+            <% else %>
+            <table>
+              <tr>
+                <td><%= link_to "ホーム",root_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "ブックマーク",new_customer_session_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "サークルのを探す",circles_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "テニスコートを登録する",new_customer_session_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "サークルを登録する",new_customer_session_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "ログイン",new_customer_session_path %></td>
+              </tr>
+            </table>
+            <div>
               <p class="p-3 bg-light rounded shadow-sm">テニスコート・サークルの登録、お気に入りを利用する場合は<%= link_to "ログイン",new_customer_session_path,class:"font-weight-bold" %>が必要となります。</p>
             </div>
+            <% end %>
           </div>
         </div>
       </nav>
@@ -86,14 +106,10 @@
                     <input type="button" value="検索" onclick="codeAddress()" class="btn text-light mr-3 map-search">
                   </li>
                 <% end %>
-                <% if customer_signed_in? %>
-                  <li class="nav-item mr-3"><%= link_to "ログアウト",destroy_customer_session_path,method: :delete,class:"nav-link" %></li>
-                <% elsif admin_signed_in? %>
+                <% if admin_signed_in? %>
                   <li class="nav-item mr-5"><%= link_to "ログアウト",destroy_admin_session_path,method: :delete,class:"nav-link" %></li>
                   <li class="nav-item mr-5"><%= link_to "報告一覧",admin_root_path,class:"nav-link" %></li>
                   <li class="nav-item mr-5"><%= link_to "会員一覧",admin_customer_index_path,class:"nav-link" %></li>
-                <% else %>
-                  <li class="nav-item mr-5"><%= link_to "ログイン",new_customer_session_path,class:"nav-link" %></li>
                 <% end %>
               </ul>
             </div>

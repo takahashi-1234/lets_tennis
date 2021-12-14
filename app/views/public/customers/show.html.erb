@@ -1,6 +1,7 @@
-<div class="container">
-  <div class="common-parts-info bg-light">
-    <table class="table table-hover w-100">
+<div class="main-content">
+  <div class="left-content bg-light p-3 shadow-sm">
+    <h3>マイページ</h3>
+    <table class="table">
       <tr>
         <td>名前</td>
         <td><%= current_customer.name %></td>
@@ -27,6 +28,18 @@
         <td></td>
       </tr>
     </table>
+  </div>
+  <div class="right-content bg-light p-3 shadow-sm">
+      <h3>登録サークル</h3>
+    <% if current_customer.circles.exists? %>
+      <ul>
+        <% current_customer.circles.each do |circle| %>
+          <li><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %>（登録日：<%= circle.created_at.strftime("%Y/%m/%d")%>）</li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h3>登録しているサークルはありません</h3>
+    <% end %>
   </div>
 </div>
 <%= render "public/customers/modal" %>
