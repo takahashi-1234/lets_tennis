@@ -1,4 +1,6 @@
 class Public::CirclesController < ApplicationController
+  before_action:authenticate_customer!,except:[:index,:show]
+
   def new
     @circle=Circle.new
   end

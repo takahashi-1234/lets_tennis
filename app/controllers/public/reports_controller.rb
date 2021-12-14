@@ -1,4 +1,6 @@
 class Public::ReportsController < ApplicationController
+  before_action:authenticate_customer!
+
   def create
     court=Court.find(params[:court_id])
     report=current_customer.reports.new(report_params)

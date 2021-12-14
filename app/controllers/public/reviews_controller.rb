@@ -1,4 +1,6 @@
 class Public::ReviewsController < ApplicationController
+  before_action:authenticate_customer!
+
   def create
     @circle=Circle.find(params[:circle_id])
     review=current_customer.reviews.new(review_params)

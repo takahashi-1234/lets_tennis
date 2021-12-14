@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action:authenticate_customer!
+  
   def favorite_courts
     @q=current_customer.favorite_courts.ransack(params[:q])
     @favorite_courts=@q.result(distinct:true).page(params[:page])

@@ -25,8 +25,6 @@
           </div>
           <div class="small">
             <table class="table table-hover">
-              <% if customer_signed_in? %>
-              
               <tr>
                 <td><%= link_to "ホーム",root_path %></td>
               </tr>
@@ -34,7 +32,7 @@
                 <td><%= link_to "ブックマーク",favorite_courts_path %></td>
               </tr>
               <tr>
-                <td><%= link_to "サークルのを探す",circles_path %></td>
+                <td><%= link_to "サークルを探す",circles_path %></td>
               </tr>
               <tr>
                 <td><%= link_to "テニスコートを登録する",new_court_path %></td>
@@ -42,6 +40,7 @@
               <tr>
                 <td><%= link_to "サークルを登録する",new_circle_path %></td>
               </tr>
+            <% if customer_signed_in? %>
               <tr>
                 <td><%= link_to "マイページ",customer_path(current_customer.id) %></td>
               </tr>
@@ -53,22 +52,6 @@
               <p class="p-3 bg-light rounded shadow-sm">ようこそ<%= current_customer.name %>さん。<br>すべてのサービスをご利用いただけます。</p>
             </div>
             <% else %>
-            <table>
-              <tr>
-                <td><%= link_to "ホーム",root_path %></td>
-              </tr>
-              <tr>
-                <td><%= link_to "ブックマーク",new_customer_session_path %></td>
-              </tr>
-              <tr>
-                <td><%= link_to "サークルのを探す",circles_path %></td>
-              </tr>
-              <tr>
-                <td><%= link_to "テニスコートを登録する",new_customer_session_path %></td>
-              </tr>
-              <tr>
-                <td><%= link_to "サークルを登録する",new_customer_session_path %></td>
-              </tr>
               <tr>
                 <td><%= link_to "ログイン",new_customer_session_path %></td>
               </tr>
@@ -93,7 +76,7 @@
             <% end %>
             
             <div class="header-nav">
-            <a class="navbar-brand ml-2" href="#"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+            <a class="navbar-brand ml-2" href="/"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

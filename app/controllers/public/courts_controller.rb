@@ -1,4 +1,6 @@
 class Public::CourtsController < ApplicationController
+  before_action:authenticate_customer!,except:[:index,:show]
+  
   def index
     @q=Court.ransack(params[:q])
     @courts=@q.result(distinct:true).page(params[:page])

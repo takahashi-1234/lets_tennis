@@ -1,4 +1,6 @@
 class Public::FavoritesController < ApplicationController
+  before_action:authenticate_customer!
+
   def create
     if customer_signed_in?
       court=Court.find(params[:court_id])
