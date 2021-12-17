@@ -13,6 +13,7 @@ class Public::CourtsController < ApplicationController
     @comments=@court.comments.order(created_at: :desc)
     @circles=Circle.where(court_id:@court.id)
     @report=Report.new
+    @favorite=current_customer.favorites.find_by(court_id: @court.id)
   end
   def new
     @court=Court.new

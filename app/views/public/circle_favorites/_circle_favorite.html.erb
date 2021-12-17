@@ -1,0 +1,9 @@
+<% if circle.favorited_by?(current_customer) %>
+  <%= link_to circle_circle_favorite_path(circle.id,circle_favorite),method: :delete,remote:true do %>
+    <span><i class="fas fa-bookmark bookmark fa-2x"></i></span>
+  <% end %>
+<% else %>
+  <%= link_to circle_circle_favorites_path(circle.id),method: :post,remote:true do %>
+    <span><i class="far fa-bookmark fa-2x"></i></span>
+  <% end %>
+<% end %>

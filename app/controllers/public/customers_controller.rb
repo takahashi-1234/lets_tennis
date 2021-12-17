@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   
   def favorite_courts
     @q=current_customer.favorite_courts.ransack(params[:q])
-    @favorite_courts=@q.result(distinct:true).page(params[:page])
+    @courts=@q.result(distinct:true).page(params[:page])
     gon.favorite_courts=current_customer.favorite_courts
   end
   

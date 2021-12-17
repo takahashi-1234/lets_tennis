@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources:customer,except:[:new,:create,:destroy]
   end
   scope module: :public do
-    resources:courts,except:[:update,:edit,:destroy] do
+    resources:courts,except:[:update,:edit,:destroy,:index] do
       resources:comments,only:[:create,:destroy]
       resources:favorites,only:[:create,:destroy]
       resources:reports,only:[:create]
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get "/customers/favoritecourts"=>"customers#favorite_courts",as:"favorite_courts"
     resources:customers,only:[:show,:edit,:update]
     resources:circles do
+      resources:circle_favorites,only:[:create,:destroy]
       resources:reviews,only:[:create,:destroy]
       resources:events,except:[:index,:edit,:update]
     end

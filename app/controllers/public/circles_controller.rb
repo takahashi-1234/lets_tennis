@@ -16,6 +16,7 @@ class Public::CirclesController < ApplicationController
     gon.court=@circle.court
     @reviews=@circle.reviews.order(created_at: :desc)
     @review=Review.new
+    @circle_favorite=current_customer.circle_favorites.find_by(circle_id:@circle.id)
   end
   
   def index

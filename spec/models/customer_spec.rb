@@ -1,15 +1,20 @@
 require 'rails_helper'
-RSpec.describe Customer,type: :model do
-  describe 'ユーザーログイン' do
-    context 'バリデーション' do
-      it "新規登録ができる"do
-        customer=Customer.new(name:"mm",email:"kk@com",password:"1111111",password_confirmation:"1111111")
-        expect(customer).to be_valid
+RSpec.describe '顧客モデルのテスト',type: :model do
+  describe 'ログインテスト' do
+    subject{customer.valid?}
+    let(:customer){build(:customer)}
+    
+    context 'nameのカラム' do
+      it "空欄でないこと"do
+        customer.name=""
+        is_expected.to eq false
       end
-      it "新規登録ができない" do
-        customer=Customer.new(name:"",email:"kk@com",password:"1111111",password_confirmation:"1111111")
-        customer.valid?
-        expect(customer.errors[:name]).to include("can't be blank")
+      it "6文字以下であること" do
+        customer.name="高橋"
+        is_expected.to eq true
+      end
+      it "６文字以上の場合" do
+        is_expected.to eq false
       end
     end
   end

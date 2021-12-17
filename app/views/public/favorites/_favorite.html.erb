@@ -1,0 +1,9 @@
+<% if court.favorited_by?(current_customer) %>
+  <%= link_to court_favorite_path(court.id,favorite.id),method: :delete,remote:true do %>
+    <span><i class="fas fa-bookmark bookmark fa-2x"></i></span>
+  <% end %>
+<% else %>
+  <%= link_to court_favorites_path(court.id),method: :post,remote:true do %>
+    <span><i class="far fa-bookmark fa-2x"></i></span>
+  <% end %>
+<% end %>

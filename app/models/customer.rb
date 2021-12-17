@@ -12,4 +12,6 @@ class Customer < ApplicationRecord
   has_many:courts,dependent: :destroy
   has_many:reviews,dependent: :destroy
   has_many:favorite_courts,through: :favorites,source: :court
+  has_many:circle_favorites,dependent: :destroy
+  
 end

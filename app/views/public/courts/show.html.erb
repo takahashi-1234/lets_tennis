@@ -1,19 +1,16 @@
 <div class="main-content">
   <div class="left-content bg-light p-3 shadow-sm">
     <div class="mb-3">
-      <%= link_to "一覧に戻る",courts_path %>
+      <%= link_to "一覧に戻る",root_path %>
     </div>
     <table class="table small">
       <tr><td>名称</td><td><%= @court.name %></td>
-      <% if customer_signed_in? %>
-        <% if @court.favorited_by?(current_customer) %>
-          <td><%= link_to court_favorite_path(@court.id),method: :delete do %><i class="fas fa-bookmark bookmark fa-2x"></i><% end %></td>
-        <% else %>
-          <td><%= link_to court_favorites_path(@court.id),method: :post do %><i class="far fa-bookmark fa-2x"></i><% end %></td>
-        <% end %></tr>
-      <% else %>
-        <td><%= link_to new_customer_session_path do %><i class="far fa-bookmark fa-2x"></i><% end %></td>
-      <% end %>
+      <!--お気に入りボタンのテンプレート-->
+      <td id="fav_btn">
+        <%= render "public/favorites/favorite",court: @court,favorite: @favorite %>
+      </td>
+      
+      </tr>
       <tr><td>住所</td><td><%= @court.address[12..100] %></td><td></td></tr>
       <tr><td>コート</td><td><%= @court.court_kind %></td><td></td></tr>
       <tr><td>運営</td><td><%= @court.operation %></td><td></td></tr>
