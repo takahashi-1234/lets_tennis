@@ -30,16 +30,30 @@
     </table>
   </div>
   <div class="right-content bg-light p-3 shadow-sm">
+    <div class="my_circle">
       <h3>登録サークル</h3>
-    <% if current_customer.circles.exists? %>
-      <ul>
-        <% current_customer.circles.each do |circle| %>
-          <li><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %>（登録日：<%= circle.created_at.strftime("%Y/%m/%d")%>）</li>
+      <% if current_customer.circles.exists? %>
+        <ul>
+          <% current_customer.circles.each do |circle| %>
+            <li><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %>（登録日：<%= circle.created_at.strftime("%Y/%m/%d")%>）</li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>登録しているサークルはありません</p>
+      <% end %>
+    </div>
+    <div class="my_chat">
+      <h3>チャット</h3>
+      <% if current_customer.room_members.exists? %>
+        <ul>
+        <% current_customer.room_members.each do |room_member| %>
+          <li><%= link_to circle_chat_path(room_member.circle.id) do %><%= room_member.circle.circle_name %><% end %></li>
         <% end %>
-      </ul>
-    <% else %>
-      <h3>登録しているサークルはありません</h3>
-    <% end %>
+        </ul>
+      <% else %>
+        <p>まだチャットはありません</p>
+      <% end %>
+    </div>
   </div>
 </div>
 <%= render "public/customers/modal" %>

@@ -17,6 +17,9 @@
  */
 @import"bootstrap";
 
+.login{
+  margin-top:100px;
+}
 //共通部分
 body{
   position: relative;
@@ -78,6 +81,8 @@ footer{
 .right-content{
     width:49%;
 }
+
+
   //サイドバー部分のスタイル
 .wrapper {
   display:flex;

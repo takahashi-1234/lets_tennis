@@ -4,11 +4,11 @@
         <%= link_to "一覧に戻る",circles_path %>
       </div>
       <table class="table small">
-        <tr><td class="col-lg-4">サークル名</td><td class="col-lg-6"><%= @circle.circle_name %></td><td id="circle_fav_btn" class="col-lg-2"><%= render "public/circle_favorites/circle_favorite",circle: @circle,circle_favorite: @circle_favorite %></td></tr>
+        <tr><td class="col-lg-4">サークル名</td><td class="col-lg-6"><%= @circle.circle_name %><% if current_customer != @circle.customer %><%= link_to "チャット",circle_chat_path(@circle.id) %><% end %></td><td id="circle_fav_btn" class="col-lg-2"><%= render "public/circle_favorites/circle_favorite",circle: @circle,circle_favorite: @circle_favorite %></td></tr>
         <tr><td>紹介</td><td><%= @circle.body %></td><td></td></tr>
         <tr><td>レベル<br><span id="openModal">詳細</spna></td><td><%= @circle.level %></td><td></td></tr>
         <tr><td>メンバー</td><td><%= @circle.member %></td><td></td></tr>
-        <tr><td>主な活動場所</td><td><%= @circle.court.name %></td><td></td></tr>
+        <tr><td>主な活動場所</td><td><%= link_to court_path(@circle.court.id) do %><%= @circle.court.name %><% end %></td><td></td></tr>
         <tr><td colspan="3" id="show_map"></td></tr>
         <% if @circle.customer==current_customer %>
         <tr>
@@ -70,7 +70,7 @@
           <!-- コメント一覧の部分テンプレート -->
           <% if @circle.reviews.exists? %>
             <span id="comment_index_template">
-              <%= render "public/comments/comment_index",comments:@reviews %>
+              <%= render "public/comments/comment_index",comments: @reviews %>
             </span>
           <% else %>
             <div class="text-center font-weight-bold my-5">
@@ -79,7 +79,7 @@
           <% end %>
           <!-- コメント投稿の部分テンプレート -->
           <span id="new_review_template">
-            <%= render "public/reviews/new_review",review:@review,circle:@circle %>
+            <%= render "public/reviews/new_review",review: @review,circle: @circle %>
           </span>
         </div>
       </div>

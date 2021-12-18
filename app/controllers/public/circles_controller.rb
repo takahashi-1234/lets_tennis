@@ -20,7 +20,7 @@ class Public::CirclesController < ApplicationController
   end
   
   def index
-    @circles=Circle.all
+    @circles=Circle.page(params[:page])
   end
   
   def edit

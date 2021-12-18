@@ -21,10 +21,30 @@
         lng:courts[i]["longitude"]
       });
       //マーカーの設定
-      marker[i]=new google.maps.Marker({
+      icon_clay="/assets/clay.png"
+      icon_omuni="/assets/omuni.png"
+      icon_hard="/assets/hard.png"
+      
+      if (courts[i]["court_kind"]=="オムニ"){
+        marker[i]=new google.maps.Marker({
         position:markerLatLng,
-        map:map
-      })
+        map:map,
+        icon:icon_omuni
+      });
+      }else if(courts[i]["court_kind"]=="クレイ"){
+        marker[i]=new google.maps.Marker({
+        position:markerLatLng,
+        map:map,
+        icon:icon_clay
+      });
+      }else{
+        marker[i]=new google.maps.Marker({
+        position:markerLatLng,
+        map:map,
+        icon:icon_hard
+      });
+      }
+      
       //情報窓の設定
       infoWindow[i]=new google.maps.InfoWindow({
         content:courts[i]["address"],

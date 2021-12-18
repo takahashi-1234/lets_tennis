@@ -26,7 +26,9 @@ Rails.application.routes.draw do
       resources:circle_favorites,only:[:create,:destroy]
       resources:reviews,only:[:create,:destroy]
       resources:events,except:[:index,:edit,:update]
+      resources:chats,only:[:create,:show]
     end
+    resources:rooms,only:[:index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

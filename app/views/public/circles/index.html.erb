@@ -12,9 +12,10 @@
         <td><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %></td>
         <td><%= circle.level %></td>
         <td class="text-truncate"><%= circle.body %></td>
-        <td><%= circle.court.name %></td>
+        <td><%= link_to court_path(circle.court.id) do %><%= circle.court.name %><% end %></td>
       </tr>
       <% end %>
     </table>
+    <%= paginate @circles %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="common-parts-info  bg-light">
     <%= form_with model:@circle,url:"/circles",local:true do |f| %>
-    <table class="table table-hover w-100 small">
+    <table class="table table-borderless small">
       <tr>
         <td><%= f.label :団体名 %></td>
         <td><%= f.text_field :circle_name, autofocus: true,placeholder:"みんなのテニス",class:"form-control" %></td>
@@ -24,7 +24,7 @@
         <td><%= f.select :level,[["初心者","初心者"],["中級者","中級者"],["中上級者","中上級者"],["上級者","上級者"]],{},class:"form-control" %></td>
       </tr>
         <td><%= f.label :活動コート %></td>
-        <td><%= f.select :court_id, options_from_collection_for_select(Court.all,:id,:name),{},class:"form-control searchable" %></td>
+        <td><%= f.select :court_id, options_from_collection_for_select(Court.all,:id,:name),{},class:"searchable" %></td>
       </tr>
       <tr>
         <td><%= f.label :email %></td>
