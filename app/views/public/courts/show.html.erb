@@ -6,9 +6,11 @@
     <table class="table small">
       <tr><td>名称</td><td><%= @court.name %></td>
       <!--お気に入りボタンのテンプレート-->
+      <% if customer_signed_in? %>
       <td id="fav_btn">
         <%= render "public/favorites/favorite",court: @court,favorite: @favorite %>
       </td>
+      <% end %>
       
       </tr>
       <tr><td>住所</td><td><%= @court.address[12..100] %></td><td></td></tr>

@@ -24,28 +24,28 @@
             <%= image_tag "logotennis.png",:size=>"125x110" %>
           </div>
           <div class="small">
-            <table class="table table-hover">
+            <table class="table table-hover font-weight-bold">
               <tr>
-                <td><%= link_to "ホーム",root_path %></td>
+                <td><%= link_to "ホーム",root_path,class:"text-dark" %></td>
               </tr>
               <tr>
-                <td><%= link_to "ブックマーク",favorite_courts_path %></td>
+                <td><%= link_to "ブックマーク",favorite_courts_path,class:"text-dark" %></td>
               </tr>
               <tr>
-                <td><%= link_to "サークルを探す",circles_path %></td>
+                <td><%= link_to "サークルを探す",circles_path,class:"text-dark" %></td>
               </tr>
               <tr>
-                <td><%= link_to "テニスコートを登録する",new_court_path %></td>
+                <td><%= link_to "テニスコートを登録する",new_court_path,class:"text-dark" %></td>
               </tr>
               <tr>
-                <td><%= link_to "サークルを登録する",new_circle_path %></td>
+                <td><%= link_to "サークルを登録する",new_circle_path,class:"text-dark" %></td>
               </tr>
             <% if customer_signed_in? %>
               <tr>
-                <td><%= link_to "マイページ",customer_path(current_customer.id) %></td>
+                <td><%= link_to "マイページ",customer_path(current_customer.id),class:"text-dark" %></td>
               </tr>
               <tr>
-                <td><%= link_to "ログアウト",destroy_customer_session_path,method: :delete %></td>
+                <td><%= link_to "ログアウト",destroy_customer_session_path,method: :delete,class:"text-dark" %></td>
               </tr>
             </table>
             <div mt-3>
@@ -53,7 +53,7 @@
             </div>
             <% else %>
               <tr>
-                <td><%= link_to "ログイン",new_customer_session_path %></td>
+                <td><%= link_to "ログイン",new_customer_session_path,class:"text-dark" %></td>
               </tr>
             </table>
             <div>

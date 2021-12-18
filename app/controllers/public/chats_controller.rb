@@ -1,9 +1,10 @@
 class Public::ChatsController < ApplicationController
+  before_action:authenticate_customer!
   before_action:set_circle
   
   def show
     rooms=current_customer.room_members.pluck(:room_id)
-    room_members=RoomMember.find_by(customer_id:@circle.customer.id,room_id:rooms)
+    room_members=RoomMember.find_by(circle_id:@circle.id,customer_id:@circle.customer.id,room_id:rooms)
     
     unless room_members.nil?
       @room=room_members.room
