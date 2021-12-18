@@ -3,8 +3,9 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates:name,presence:true,length:{maximum:6}
-         
+  validates:name,presence:true,length:{maximum:20}
+  
+
   has_many:comments,dependent: :destroy
   has_many:favorites,dependent: :destroy
   has_many:reports,dependent: :destroy

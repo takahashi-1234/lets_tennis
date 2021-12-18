@@ -6,7 +6,7 @@
       <table class="table small">
         <tr>
           <td class="col-lg-4">サークル名</td>
-          <td class="col-lg-6"><%= @circle.circle_name %><% if current_customer != @circle.customer %><%= link_to "チャットをする",circle_chat_path(@circle.id) %><% end %></td>
+          <td class="col-lg-6"><%= @circle.circle_name %><% if current_customer != @circle.customer %><%= link_to "チャットをする",circle_chat_path(@circle.id),class:"btn btn-primary btn-sm ml-3" %><% end %></td>
           <td id="circle_fav_btn" class="col-lg-2"><% if customer_signed_in? %><%= render "public/circle_favorites/circle_favorite",circle: @circle,circle_favorite: @circle_favorite %><% end %></td>
         </tr>
         <tr><td>紹介</td><td><%= @circle.body %></td><td></td></tr>
