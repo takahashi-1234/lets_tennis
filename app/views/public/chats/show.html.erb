@@ -1,22 +1,27 @@
-<%= form_with model:@chat,url:circle_chats_path(@circle.id),method: :post do |f| %>
-  <%= f.text_field:message %>
-  <%= f.hidden_field:room_id %>
-  <%= f.submit "送信" %>
-<% end %>
-
-<table>
-  <thead>
-    <th>投稿者名</th>
-    <th>投稿内容</th>
-  </thead>
+<div class="container">
+<div class="chat_box bg-light">
+  <div class="mb-3">
+    <%= form_with model:@chat,url:circle_chats_path(@circle.id),method: :post do |f| %>
+      <%= f.text_field:message,class:"form-control" ,placeholder:"メッセージを入力" %>
+      <%= f.hidden_field:room_id %>
+      <%= f.submit "送信",class:"btn btn-primary btn-sm" %>
+    <% end %>
+  </div>
   <% @chats.each do |chat| %>
-    <tr>
-      <% if chat.customer.circles.include?(@circle) %>
-        <td><%= @circle.circle_name %></td>
-      <% else %>
-        <td><%= chat.customer.name %></td>
-      <% end %>
-      <td><%= chat.message %></td>
-    </tr>
+    <!--送信と受信の宛先で背景色を変える -->
+    <% if chat.customer==current_customer %>
+      <p class="sender_chat shadow-sm">
+    <% else %>
+      <p class="reciever_chat shadow-sm">
+    <% end %>
+    <!--サークル保有者の場合名前をサークル名にする -->
+    <% if chat.customer.circles.include?(@circle) %>
+      <%= @circle.circle_name %>：<%= chat.message %>
+    <% else %>
+      <%= chat.customer.name %>：<%= chat.message %>
+    <% end %>
+    <br><%= chat.created_at.to_s(:datetime_jp) %>
+    </p><br>
   <% end %>
-</table>
+</div>
+</div>

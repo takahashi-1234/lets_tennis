@@ -242,3 +242,28 @@ thead{
   display:flex;
   justify-content:center;
 }
+
+
+//チャット機能のデザイン
+.reciever_chat{
+  border-radius:10px;
+  padding:20px;
+  line-height:40px;
+  background-color:white;
+  display:inline-block;
+}
+
+.sender_chat{
+  border-radius:10px;
+  padding:20px;
+  line-height:40px;
+  background-color:#73d5bc;
+  display:inline-block;
+}
+
+.chat_box{
+  width:70%;
+  padding:20px;
+  border-radius:10px;
+  margin:0 auto;
+}
