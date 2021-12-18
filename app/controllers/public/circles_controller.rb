@@ -22,7 +22,8 @@ class Public::CirclesController < ApplicationController
   end
   
   def index
-    @circles=Circle.page(params[:page])
+    @q=Circle.ransack(params[:q])
+    @circles=@q.result(distinct:true).page(params[:page])
   end
   
   def edit
