@@ -20,7 +20,8 @@
 //= require jquery.raty.js
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//turbolinksを無効化
+// require turbolinks
 //= require_tree .
 
 //モーダルの設定
@@ -34,14 +35,14 @@ $(function () {
 });
 
 //sidebarの設定。toggleClassで制御
-$(document).on('turbolinks:load',function () {
+$(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('close');
         $('.sidebar-icon').toggleClass('open');
     });
 });
 
-$(document).on('turbolinks:load',function () {
+$(function () {
   $('.tab').click(function(){
     $('.tab-active').removeClass('tab-active');
     $(this).addClass('tab-active');
