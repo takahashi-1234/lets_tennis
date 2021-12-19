@@ -3,7 +3,7 @@ class Public::CourtsController < ApplicationController
   
   def index
     @q=Court.ransack(params[:q])
-    @courts=@q.result(distinct:true).page(params[:page])
+    @courts=@q.result.page(params[:page])
     gon.courts=@courts
   end
   def show
