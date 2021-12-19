@@ -8,7 +8,7 @@ class Public::CirclesController < ApplicationController
   def create
     @circle=current_customer.circles.new(circle_params)
     if @circle.save
-      redirect_to circle_path(circle.id)
+      redirect_to circle_path(@circle.id)
     else
       render:new
     end

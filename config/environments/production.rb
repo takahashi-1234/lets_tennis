@@ -11,6 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
+  #エラー画面が出るようにした
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
@@ -23,11 +24,15 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
+  
+  #const/letを利用するためコメントアウト（ES6verを利用するため）varしか使えないないため
   # config.assets.js_compressor = :uglifier
+  
   config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+  #画像が利用できない時"true"にする
   config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
