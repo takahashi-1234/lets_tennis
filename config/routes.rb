@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     registrations:"public/registrations",
     sessions:"public/sessions"
   }
-  root to:"public/courts#index"
   
   namespace:admin do
     root to:"reports#index"
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
     resources:customer,except:[:new,:create,:destroy]
   end
   scope module: :public do
+    root to:"courts#index"
     resources:courts,except:[:update,:edit,:destroy,:index] do
       resources:comments,only:[:create,:destroy]
       resources:favorites,only:[:create,:destroy]
@@ -28,7 +28,6 @@ Rails.application.routes.draw do
       resources:events,except:[:index,:edit,:update]
       resources:chats,only:[:create,:show]
     end
-    resources:rooms,only:[:index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

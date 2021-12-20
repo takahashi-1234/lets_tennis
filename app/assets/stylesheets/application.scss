@@ -263,10 +263,18 @@ thead{
 }
 
 .chat_box{
+  height:600px;
   width:70%;
   padding:20px;
   border-radius:10px;
   margin:0 auto;
+}
+.chat_index{
+  overflow:scroll;
+  height:70%;
+}
+.new_chat{
+  height:30%;
 }
 
 

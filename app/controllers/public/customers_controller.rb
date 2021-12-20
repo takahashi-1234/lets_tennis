@@ -8,6 +8,9 @@ class Public::CustomersController < ApplicationController
   end
   
   def show
+    @rooms=current_customer.room_members.pluck(:room_id)
+    @room_members=RoomMember.where(room_id:@rooms)
+    @chat_partners=@room_members.where.not(customer_id:current_customer.id)
   end
   
   def edit

@@ -43,11 +43,11 @@
       <% end %>
     </div>
     <div class="my_chat">
-      <h3>チャット</h3>
+      <h3>チャット</h3>           
       <% if current_customer.room_members.exists? %>
         <ul>
-        <% current_customer.room_members.each do |room_member| %>
-          <li><%= link_to circle_chat_path(room_member.circle.id) do %><%= room_member.circle.circle_name %><% end %></li>
+        <% @chat_partners.each do |chat_partner| %>
+          <li><%= link_to circle_chat_path(chat_partner.circle.id) do %><%= chat_partner.customer.name %>（<%= chat_partner.customer.level %>/<%= chat_partner.customer.years_of_experience %>）：<%= chat_partner.circle.circle_name %><% end %></li>
         <% end %>
         </ul>
       <% else %>
