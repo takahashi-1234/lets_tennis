@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <td><%= link_to "編集",edit_customer_path(current_customer.id),class:"btn btn-success" %></td>
-        <td></td>
+        <td><%= link_to "退会する",customer_withdraw_path(current_customer.id),class:"btn btn-danger","data-confirm"=>"本当に退会しますか？",method: :patch %></td>
       </tr>
     </table>
   </div>

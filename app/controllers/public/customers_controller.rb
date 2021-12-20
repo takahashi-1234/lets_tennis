@@ -13,6 +13,13 @@ class Public::CustomersController < ApplicationController
     @chat_partners=@room_members.where.not(customer_id:current_customer.id)
   end
   
+  def withdraw
+    @customer=Customer.find(params[:customer_id])
+    @customer.update(is_quited: true)
+    reset_session
+    redirect_to root_path
+  end
+  
   def edit
   end
   

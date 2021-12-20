@@ -21,7 +21,9 @@ Rails.application.routes.draw do
       resources:reports,only:[:create]
     end
     get "/customers/favoritecourts"=>"customers#favorite_courts",as:"favorite_courts"
-    resources:customers,only:[:show,:edit,:update]
+    resources:customers,only:[:show,:edit,:update]do
+      patch "/withdraw"=>"customers#withdraw",as:"withdraw"
+    end
     resources:circles do
       resources:circle_favorites,only:[:create,:destroy]
       resources:reviews,only:[:create,:destroy]

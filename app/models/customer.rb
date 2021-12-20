@@ -17,4 +17,9 @@ class Customer < ApplicationRecord
   has_many:room_members,dependent: :destroy
   has_many:chats,dependent: :destroy
   
+  #is_quitedがfalseの場合trueを返す
+  def active_for_authentication?
+    super && (is_quited == false)
+  end
+  
 end

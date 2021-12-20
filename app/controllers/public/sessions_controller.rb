@@ -2,7 +2,14 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
+  protected
+  def reject_customer
+    @customer=Customer.find_by(name: params[:customer][:email])
+    if @customer
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_quited==true)
+      end
+    end
+  end
   # GET /resource/sign_in
   # def new
   #   super

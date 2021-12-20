@@ -51,3 +51,9 @@ $(function () {
     $('.tab-box').eq(index).addClass('box-show');
   });
 });
+
+
+//flashmessageを消す
+$(function(){
+  $(".alert").fadeOut(5000);
+});
