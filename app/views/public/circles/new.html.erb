@@ -1,11 +1,17 @@
 <div class="container">
   <div class="common-parts-info  bg-light">
-  <% if @circle.errors.any? %>
-    <p><%= @circle.errors.count %>件のエラーが発生しました</p>
-    <% @circle.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
-    <% end %>
-  <% end %>
+    <!--バリデーションの設定-->
+    <div class="validation">
+      <% if @circle.errors.any? %>
+        <h3><%= @circle.errors.count %>件のエラーが発生しました</h3>
+        <ul>
+          <% @circle.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    
     <%= form_with model:@circle,url:"/circles",local:true do |f| %>
     <table class="table table-borderless small">
       <tr>

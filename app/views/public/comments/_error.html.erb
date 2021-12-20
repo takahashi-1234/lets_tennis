@@ -1,0 +1,11 @@
+<!--バリデーションの設定-->
+<div class="validation">
+  <% if comment.errors.any? %>
+    <h3><%= comment.errors.count %>件のエラーが発生しました</h3>
+    <ul>
+      <% comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

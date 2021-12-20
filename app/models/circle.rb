@@ -9,7 +9,7 @@ class Circle < ApplicationRecord
   
   validates:circle_name,presence:true,length:{maximum:20}
   validates:body,presence:true,length:{maximum:200}
-
+  validates:leader_name,presence:true,length:{maximum:20}
   
   def favorited_by?(customer)
     circle_favorites.where(customer_id:customer.id).exists?

@@ -1,4 +1,9 @@
 <div class="new_comment p-3">
+  <!--バリデーションの設定-->
+  <span id="comment_error">
+    <%= render "public/comments/error",comment:comment %>
+  </span>
+  
   <%= form_with model:comment,url:court_comments_path(court.id),remote:true,method: :post do |f| %>
   <%= f.text_field:comment,class:"form-control",placeholder:"コメントを入力してください" %><br>
   <div id="rate">

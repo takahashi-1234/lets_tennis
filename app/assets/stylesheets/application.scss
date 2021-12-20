@@ -61,7 +61,6 @@ footer{
 }
 
 .new_comment{
-    margin-bottom:auto;
     height:40%;
 }
 
@@ -80,6 +79,7 @@ footer{
 }
 .right-content{
     width:49%;
+    overflow: scroll;
 }
 
 
@@ -92,6 +92,7 @@ footer{
   box-sizing: border-box;
 }
 
+//サイドバーのアイコンデザイン
 .sidebar-icon{
   transform: rotate(-90deg);
 }
@@ -266,4 +267,13 @@ thead{
   padding:20px;
   border-radius:10px;
   margin:0 auto;
+}
+
+
+//バリデーションのデザイン
+.validation{
+  padding: 20px 0 0 20px;
+}
+.validation li{
+  color:red;
 }

@@ -1,5 +1,17 @@
 <div class="container">
 <div class="chat_box bg-light">
+    <!--バリデーションの設定-->
+    <div class="validation">
+      <% if @chat.errors.any? %>
+        <h3><%= @chat.errors.count %>件のエラーが発生しました</h3>
+        <ul>
+          <% @chat.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    
   <div class="mb-3">
     <%= link_to "サークル詳細へ",circle_path(@circle.id) %>
   </div>

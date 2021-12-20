@@ -25,8 +25,11 @@ class Public::CourtsController < ApplicationController
     results=Geocoder.search([@court.latitude,@court.longitude])
     @court.address=results.first.address
     @court.customer_id=current_customer.id
-    @court.save
-    redirect_to root_path
+    if @court.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
   
   private

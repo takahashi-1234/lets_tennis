@@ -3,12 +3,15 @@ class Public::ReviewsController < ApplicationController
 
   def create
     @circle=Circle.find(params[:circle_id])
-    review=current_customer.reviews.new(review_params)
-    review.circle_id=@circle.id
-    review.save
-    @review=Review.new
-    @reviews=@circle.reviews.order(created_at: :desc)
-    render:review_index
+    @review=current_customer.reviews.new(review_params)
+    @review.circle_id=@circle.id
+    if @review.save
+      @review=Review.new
+      @reviews=@circle.reviews.order(created_at: :desc)
+      render:review_index
+    else
+      render:error
+    end
   end
   def destroy
     Review.find(params[:id]).destroy

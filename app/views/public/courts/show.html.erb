@@ -64,12 +64,13 @@
           <p>コメントはありません</p>
         </div>
       <% end %>
+      
       <!-- コメント投稿の部分テンプレート -->
       <span id="new_comment_template">
         <%= render "public/comments/new_comment",comment:@comment,court:@court %>
       </span>
     </div>
-    <!--コメントタブ -->
+    <!--報告タブ -->
     <div class="tab-box">
       <div class="report-form">
       <%= form_with model:@report,url:court_reports_path(@court.id),local:true do |f| %>

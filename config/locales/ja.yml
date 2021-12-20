@@ -1,0 +1,48 @@
+ja:
+  activerecord:
+    models:
+      customer: 会員
+      circle: サークル
+      event: イベント
+      court: コート
+      comment: コメント
+      review: レビュー
+      report: 報告
+    attributes:
+      customer:
+        name: 名前
+        email: メールアドレス
+        password confirmation: パスワード（確認）
+        password: パスワード
+        age: 年齢
+        years_of_experience: テニス歴
+        level: 競技レベル
+      circle:
+        circle_name: サークル名
+        leader_name: 代表者名
+        body: 紹介文
+        member: 所属人数
+        level: 競技レベル
+        email: メールアドレス
+      event:
+        title: イベント名
+        body: イベント内容
+        event_date: 開催日
+        event_deadline: 締切日
+      court:
+        name: コート名
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
+        court_kind: コートの種類
+        operation: 運営
+        price: 金額
+      comment:
+        comment: コメント
+        evaluation: 星評価
+      review:
+        comment: コメント
+        evaluation: 星評価
+      report:
+        report_content: 修正内容
+        report_detail: 修正詳細

@@ -1,5 +1,17 @@
 <div class="container">
   <div class="common-parts-info  bg-light">
+    <!--バリデーションの設定-->
+    <div class="validation">
+      <% if @event.errors.any? %>
+        <h3><%= @event.errors.count %>件のエラーが発生しました</h3>
+        <ul>
+          <% @event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    
     <%= form_with model:@event,url:circle_events_path,local:true do |f| %>
     <table class="table w-100">
       <tr>

@@ -1,4 +1,8 @@
 <div class="new_comment p-3">
+    <!--バリデーションの設定-->
+  <span id="comment_error">
+    <%= render "public/comments/error",comment:review %>
+  </span>
   <%= form_with model:review,url:circle_reviews_path(circle.id),remote:true,method: :post do |f| %>
   <%= f.text_field:comment,class:"form-control",placeholder:"コメントを入力してください" %><br>
   <div id="rate">
