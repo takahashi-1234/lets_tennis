@@ -5,15 +5,17 @@ class Public::ChatsController < ApplicationController
   def show
     rooms=current_customer.room_members.pluck(:room_id)
     room_members=RoomMember.find_by(circle_id:@circle.id,customer_id:@circle.customer.id,room_id:rooms)
+    #room?memberが見つかればroomを変数に入れる
     unless room_members.nil?
       @room=room_members.room
     else
+    #room_memberが見つからない場合新規にroomとroom_memberを作成する
       @room=Room.new
       @room.save
       RoomMember.create(customer_id:current_customer.id,circle_id:@circle.id,room_id:@room.id)
       RoomMember.create(customer_id:@circle.customer.id,circle_id:@circle.id,room_id:@room.id)
     end
-    @chats=@room.chats.order(created_at: :desc)
+    @chats=@room.chats
     @chat=Chat.new(room_id:@room.id)
   end
   def create

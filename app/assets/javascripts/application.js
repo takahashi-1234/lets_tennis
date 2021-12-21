@@ -42,6 +42,7 @@ $(function () {
     });
 });
 
+//タブの切り替え制御（クリックアクションでクラス名の追加・削除）
 $(function () {
   $('.tab').click(function(){
     $('.tab-active').removeClass('tab-active');

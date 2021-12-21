@@ -8,6 +8,7 @@ class Public::CirclesController < ApplicationController
   def create
     @circle=current_customer.circles.new(circle_params)
     if @circle.save
+      flash[:notice]="サークルを登録しました。"
       redirect_to circle_path(@circle.id)
     else
       render:new

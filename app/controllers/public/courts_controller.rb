@@ -26,6 +26,7 @@ class Public::CourtsController < ApplicationController
     @court.address=results.first.address
     @court.customer_id=current_customer.id
     if @court.save
+      flash[:notice]="コートを登録しました。"
       redirect_to root_path
     else
       render :new
