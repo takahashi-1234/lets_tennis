@@ -4,4 +4,5 @@ class Chat < ApplicationRecord
   belongs_to:circle
   
   validates:message,presence:true,length:{maximum:100}
+  
 end

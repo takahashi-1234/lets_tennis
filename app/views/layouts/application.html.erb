@@ -42,7 +42,12 @@
               </tr>
             <% if customer_signed_in? %>
               <tr>
-                <td><%= link_to "マイページ",customer_path(current_customer.id),class:"text-dark" %></td>
+                <td>
+                  <%= link_to "マイページ",customer_path(current_customer.id),class:"text-dark" %>
+                  <% if @total_uncheck_chats>0 %>
+                    <i class="fa fa-circle fa-x" style="color: blue;"><%= @total_uncheck_chats %></i>
+                  <% end %>
+                </td>
               </tr>
               <tr>
                 <td><%= link_to "ログアウト",destroy_customer_session_path,method: :delete,class:"text-dark" %></td>

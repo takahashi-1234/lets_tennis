@@ -49,9 +49,23 @@
         <% @chat_partners.each do |chat_partner| %>
         <!--相手がサークルの保有者の場合は名前を表示し、保有者ではない場合サークル名を表示する-->
           <% if current_customer.circles.include?(chat_partner.circle) %>
-            <li><%= link_to circle_chat_path(chat_partner.circle.id) do %><%= chat_partner.customer.name %>（<%= chat_partner.customer.level %>/<%= chat_partner.customer.years_of_experience %>）：<%= chat_partner.circle.circle_name %><% end %></li>
+            <li>
+              <%= link_to circle_chat_path(chat_partner.circle.id) do %>
+                <%= chat_partner.customer.name %>（<%= chat_partner.customer.level %>/<%= chat_partner.customer.years_of_experience %>）：<%= chat_partner.circle.circle_name %>
+                <% if chat_partner.uncheck_chats.exists? %>
+                  <i class="fa fa-circle fa-x" style="color: blue;"><%= chat_partner.uncheck_chats.count %></i>
+                <% end %>
+              <% end %>
+            </li>
           <% else %>
-            <li><%= link_to circle_chat_path(chat_partner.circle.id) do %><%= chat_partner.circle.circle_name %>（<%= chat_partner.circle.level %>）<% end %></li>
+            <li>
+              <%= link_to circle_chat_path(chat_partner.circle.id) do %>
+                <%= chat_partner.circle.circle_name %>（<%= chat_partner.circle.level %>)
+                <% if chat_partner.uncheck_chats.exists? %>
+                  <i class="fa fa-circle fa-x" style="color: blue;"><%= chat_partner.uncheck_chats.count %></i>
+                <% end %>
+              <% end %>
+            </li>
           <% end %>
         <% end %>
         </ul>

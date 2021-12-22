@@ -6,6 +6,7 @@ class Public::ReportsController < ApplicationController
     report=current_customer.reports.new(report_params)
     report.court_id=court.id
     report.save
+    flash[:notice]="報告ありがとうございます。"
     redirect_back(fallback_location:root_path)
   end
   

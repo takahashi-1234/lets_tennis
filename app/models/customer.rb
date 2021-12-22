@@ -21,11 +21,4 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (is_quited == false)
   end
-  
-  def unchecked_chats?
-    my_rooms_ids = UserRoom.select(:room_id).where(customer_id: id)
-    other_customer_ids = UserRoom.select(:customer_id).where(room_id: my_rooms_ids).where.not(customer_id: id)
-    Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
-  end
-  
 end

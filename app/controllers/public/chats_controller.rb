@@ -16,6 +16,7 @@ class Public::ChatsController < ApplicationController
       RoomMember.create(customer_id:@circle.customer.id,circle_id:@circle.id,room_id:@room.id)
     end
     @chats=@room.chats
+    @chats.where.not(customer_id:current_customer.id).update(checked:true)
     @chat=Chat.new(room_id:@room.id)
   end
   def create

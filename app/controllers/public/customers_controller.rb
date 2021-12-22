@@ -9,9 +9,8 @@ class Public::CustomersController < ApplicationController
   end
   
   def show
-    @rooms=current_customer.room_members.pluck(:room_id)
-    @room_members=RoomMember.where(room_id:@rooms)
-    @chat_partners=@room_members.where.not(customer_id:current_customer.id)
+    rooms=current_customer.room_members.pluck(:room_id)
+    @chat_partners=RoomMember.where(room_id:rooms).where.not(customer_id:current_customer.id)
   end
   
   def withdraw
