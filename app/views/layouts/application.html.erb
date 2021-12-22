@@ -91,7 +91,7 @@
                 <% if %w[root new_court].any?{|name|current_page?(send("#{name}_path"))} %>
                   <li class=" nav-item mr-3">
                     <input id="address" type="text-box" value="東京都港区高輪4-10-30" class="rounded mr-3 mt-1" size="40">
-                    <input type="button" value="検索" onclick="codeAddress()" class="btn text-light mr-3 map-search">
+                    <input type="button" value="検索" onclick="codeAddress()" class="btn btn-sm text-light mr-3 map-search">
                   </li>
                 <% end %>
                 <% if admin_signed_in? %>

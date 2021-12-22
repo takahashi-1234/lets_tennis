@@ -22,9 +22,9 @@
         lng:courts[i]["longitude"]
       });
       //マーカーの設定
-      const icon_clay="/assets/clay.png"
-      const icon_omuni="/assets/omuni.png"
-      const icon_hard="/assets/hard.png"
+      const icon_clay="<%= asset_path('clay.png') %>"
+      const icon_omuni="<%= asset_path('omuni.png') %>"
+      const icon_hard="<%= asset_path('hard.png') %>"
       
       if (courts[i]["court_kind"]=="オムニ"){
         marker[i]=new google.maps.Marker({
