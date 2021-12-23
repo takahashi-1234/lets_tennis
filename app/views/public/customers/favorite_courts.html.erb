@@ -12,6 +12,12 @@
       center:{lat:35.6585,lng:139.7486 },
       mapId:"1b786f15acc7b7be"
     });
+    //アイコンをクリックした時にマップの描画を変更する
+    map.addListener("center_changed",()=>{
+    window.setTimeout(() =>{
+      map.panTo(marker.getPosition());
+    }, 10000);
+  });
     
     //登録済みマーカーを表示
     //for文で配列化したコートを抽出する
@@ -47,14 +53,26 @@
       }
       
       //情報窓の設定
+      //リンクを設置
+      let court_id=courts[i]["id"]
+      let court_name=courts[i]["name"]
+      const content='<a href= "/courts/'+court_id+'">'+court_name+'</a>'
       infoWindow[i]=new google.maps.InfoWindow({
-        content:courts[i]["address"],
+        content: content
       });
+      //アイコンクリック時のアクション
       marker[i].addListener('click',function(){
         infoWindow[i].open(map,marker[i]);
+        map.setZoom(15);
+        map.setCenter(marker[i].getPosition());
       });
     }
   }
+    //リストをクリックすると地図も移動
+  function setlocation(lat,lng){
+    map.setCenter(new google.maps.LatLng(lat,lng));
+  };
+  //検索窓の設定
   function codeAddress(){
     let inputAddress=document.getElementById('address').value;
     geocoder.geocode({'address':inputAddress},function(results,status){

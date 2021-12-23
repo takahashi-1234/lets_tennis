@@ -2,8 +2,8 @@ class Public::CourtsController < ApplicationController
   before_action:authenticate_customer!,except:[:index,:show]
   
   def index
-    @q=Court.ransack(params[:q])
-    @courts=@q.result(distinct:true).page(params[:page])
+    @q=Court.includes(:favorite_customers).ransack(params[:q])
+    @courts=@q.result(distinct:true).order(created_at: :desc).page(params[:page])
     gon.courts=@courts
   end
   def show

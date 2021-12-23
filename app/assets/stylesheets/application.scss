@@ -133,8 +133,12 @@ i.open{
     width:100%;
 }
 
-.map-search{
+.map_search_btn{
   background-color:#73d5bc;
+  margin-left:10px;
+}
+.map_search{
+  border-radius:10px;
 }
 
 //モーダル部分のスタイル
@@ -297,6 +301,8 @@ thead{
   left:5%;
   font-weight:bold;
 }
+
+//検索窓
 .search_window{
   margin:10px 0;
   text-align:right;

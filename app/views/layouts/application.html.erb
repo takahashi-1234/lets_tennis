@@ -88,10 +88,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 <!-- googlemapの検索窓はgooglemapが表示される画面のみにする -->
-                <% if %w[root new_court].any?{|name|current_page?(send("#{name}_path"))} %>
-                  <li class=" nav-item mr-3">
-                    <input id="address" type="text-box" value="東京都港区高輪4-10-30" class="rounded mr-3 mt-1" size="40">
-                    <input type="button" value="検索" onclick="codeAddress()" class="btn btn-sm text-light mr-3 map-search">
+                <% if %w[root new_court favorite_courts].any?{|name|current_page?(send("#{name}_path"))} %>
+                  <li class="nav-item">
+                    <input id="address" type="text-box" value="東京都港区高輪4-10-30" class="map_search" size="40">
+                    <input type="button" value="検索" onclick="codeAddress()" class="btn btn-sm text-light map_search_btn">
                   </li>
                 <% end %>
                 <% if admin_signed_in? %>

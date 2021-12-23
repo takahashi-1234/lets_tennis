@@ -4,6 +4,7 @@ class Court < ApplicationRecord
   has_many:favorites,dependent: :destroy
   has_many:reports,dependent: :destroy
   has_many:circles,dependent: :destroy
+  has_many:favorite_customers,through: :favorites,source: :customer
   
   validates:name,presence:true,length:{maximum:20}
   
