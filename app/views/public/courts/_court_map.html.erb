@@ -22,7 +22,7 @@
       <!--クリックすると地図が移動する-->
       <tr onclick="setlocation(<%= court.latitude %>,<%= court.longitude %>)">
         <td class="col-lg-4"><%= link_to court_path(court.id) do %><%= court.name %><% end %></td>
-        <td class="col-lg-7"><%= court.address[12..100] %></td>
+        <td class="col-lg-7"><%= court.address %></td>
         <td class="col-lg-1 text-center"><%= court.favorites.count %></td>
       </tr>
       <% end %>

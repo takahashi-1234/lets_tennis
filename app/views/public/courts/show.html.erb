@@ -13,10 +13,12 @@
       <td id="fav_btn">
         <%= render "public/favorites/favorite",court: @court,favorite: @favorite %>
       </td>
+      <% else %>
+        <td></td>
       <% end %>
       
       </tr>
-      <tr><td>住所</td><td><%= @court.address[12..100] %></td><td></td></tr>
+      <tr><td>住所</td><td><%= @court.address %></td><td></td></tr>
       <tr><td>コート</td><td><%= @court.court_kind %></td><td></td></tr>
       <tr><td>運営</td><td><%= @court.operation %></td><td></td></tr>
       <tr><td>金額</td><td><%= @court.price %></td><td></td></tr>

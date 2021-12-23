@@ -4,7 +4,7 @@ class Public::CourtsController < ApplicationController
   def index
     @q=Court.includes(:favorite_customers).ransack(params[:q])
     @courts=@q.result(distinct:true).order(created_at: :desc).page(params[:page])
-    gon.courts=@courts
+    gon.courts=@q.result(distinct:true)
   end
   def show
     @court=Court.find(params[:id])
@@ -23,7 +23,7 @@ class Public::CourtsController < ApplicationController
   def create
     @court=Court.new(court_params)
     results=Geocoder.search([@court.latitude,@court.longitude])
-    @court.address=results.first.address
+    @court.address=results.first.address[12..100]
     @court.customer_id=current_customer.id
     if @court.save
       flash[:notice]="コートを登録しました。"

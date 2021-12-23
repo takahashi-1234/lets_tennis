@@ -10,7 +10,9 @@ class Public::CustomersController < ApplicationController
   
   def show
     rooms=current_customer.room_members.pluck(:room_id)
-    @chat_partners=RoomMember.where(room_id:rooms).where.not(customer_id:current_customer.id)
+    @rooms=Room.where(id: rooms)
+    #roomにチャットがあればチャット相手を表示
+    @room_chat=Chat.where(room_id: rooms)
   end
   
   def withdraw
