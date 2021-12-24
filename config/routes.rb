@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   }
   
   namespace:admin do
-    root to:"reports#index"
+    root to:"reports#not_supported_reports"
+    get "suported_reports" => "reports#supported_reports",as:"supported_reports"
     resources:courts,except:[:new,:create,:index]
     resources:reports,only:[:edit,:update]
     resources:customer,except:[:new,:create,:destroy]

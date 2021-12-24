@@ -1,6 +1,9 @@
 class Admin::ReportsController < ApplicationController
-  def index
-    @reports=Report.all
+  def not_supported_reports
+    @reports=Report.where(is_supported:false).page(params[:page])
+  end
+  def supported_reports
+    @reports=Report.where(is_supported:true).page(params[:page])
   end
   def update
     report=Report.find(params[:id])

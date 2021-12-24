@@ -1,5 +1,6 @@
 <div class="container login">
   <div class="customer-info bg-light">
+    <%= flash[:alert] %>
     <h2 class="pt-2 pl-2">ログイン</h2>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

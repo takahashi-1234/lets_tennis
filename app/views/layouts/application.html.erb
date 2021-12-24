@@ -75,13 +75,15 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" id="sidebaraction">
           <div class="container-fluid">
             <% unless admin_signed_in? %>
-            <button type="button" id="sidebarCollapse" class="btn">
-              <i class="fas fa-chevron-circle-down sidebar-icon fa-2x" style="color:#73d5bc;"></i>
-            </button>
+              <button type="button" id="sidebarCollapse" class="btn">
+                <i class="fas fa-chevron-circle-down sidebar-icon fa-2x" style="color:#73d5bc;"></i>
+              </button>
             <% end %>
 
             <div class="header-nav">
-            <a class="navbar-brand ml-2" href="/"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+              <% unless admin_signed_in? %>
+                <a class="navbar-brand ml-2" href="/"><%= image_tag "tennis_ball.png",:size=>"40x40" %><i class="font-weight-bold ml-2">Lets!Tennis</i></a>
+              <% end %>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -96,7 +98,15 @@
                 <% end %>
                 <% if admin_signed_in? %>
                   <li class="nav-item mr-5"><%= link_to "ログアウト",destroy_admin_session_path,method: :delete,class:"nav-link" %></li>
-                  <li class="nav-item mr-5"><%= link_to "報告一覧",admin_root_path,class:"nav-link" %></li>
+                  <li class="nav-item dropdown mr-5">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      報告一覧
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <%= link_to "未対応",admin_root_path,class:"dropdown-item" %>
+                      <%= link_to "対応済",admin_supported_reports_path,class:"dropdown-item" %>
+                    </div>
+                  </li>
                   <li class="nav-item mr-5"><%= link_to "会員一覧",admin_customer_index_path,class:"nav-link" %></li>
                 <% end %>
               </ul>

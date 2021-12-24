@@ -18,11 +18,23 @@
         <td>レベル<br><span id="openModal">詳細</spna></td>
         <td><%= current_customer.level %></td>
       </tr>
-    
       <tr>
         <td>メールアドレス</td>
         <td><%= current_customer.email %></td>
       </tr>
+      <% if current_customer.circles.present? %>
+        <% current_customer.circles.each.with_index do |circle,i| %>
+          <tr>
+            <td>登録サークル<%= i+1 %></td>
+            <td><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td>登録サークル</td>
+          <td>登録サークルはありません</td>
+        </tr>
+      <% end %>
       <tr>
         <td><%= link_to "編集",edit_customer_path(current_customer.id),class:"btn btn-success" %></td>
         <td><%= link_to "退会する",customer_withdraw_path(current_customer.id),class:"btn btn-danger","data-confirm"=>"本当に退会しますか？",method: :patch %></td>
@@ -31,15 +43,15 @@
   </div>
   <div class="right-content bg-light p-3 shadow-sm">
     <div class="my_circle">
-      <h3>登録サークル</h3>
-      <% if current_customer.circles.exists? %>
+      <h3>お気に入りサークル</h3>
+      <% if current_customer.favorite_circles.present? %>
         <ul>
-          <% current_customer.circles.each do |circle| %>
+          <% current_customer.favorite_circles.each do |circle| %>
             <li><%= link_to circle_path(circle.id) do %><%= circle.circle_name %><% end %>（登録日：<%= circle.created_at.strftime("%Y/%m/%d")%>）</li>
           <% end %>
         </ul>
       <% else %>
-        <p>登録しているサークルはありません</p>
+        <p>お気に入りしているサークルはありません</p>
       <% end %>
     </div>
     <div class="my_chat">

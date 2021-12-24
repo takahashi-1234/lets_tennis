@@ -17,6 +17,7 @@ ja:
         age: 年齢
         years_of_experience: テニス歴
         level: 競技レベル
+        is_quited: 退会フラグ
       circle:
         circle_name: サークル名
         leader_name: 代表者名

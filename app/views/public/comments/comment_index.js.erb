@@ -1,4 +1,6 @@
 <!--部分テンプレートを更新-->
 $("#comment_index_template").html("<%= j(render 'public/comments/comment_index', comments: @comments) %>");
+<!--コメントの数を変更-->
+$("#comment_count").html(' コメント(<%= @comments.count %>) ');
 <!--フォームを送信したあとに空にする-->
 $("#new_comment_template").html("<%= j(render 'public/comments/new_comment', comment: @comment,court: @court) %>");

@@ -1,6 +1,7 @@
 class Admin::CustomerController < ApplicationController
   def index
-    @customers=Customer.all
+    @q=Customer.ransack(params[:q])
+    @customers=@q.result(distinct:true).page(params[:page])
   end
   
   def update

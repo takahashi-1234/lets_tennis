@@ -14,6 +14,7 @@ class Customer < ApplicationRecord
   has_many:reviews,dependent: :destroy
   has_many:favorite_courts,through: :favorites,source: :court
   has_many:circle_favorites,dependent: :destroy
+  has_many:favorite_circles,through: :circle_favorites,source: :circle
   has_many:room_members,dependent: :destroy
   has_many:chats,dependent: :destroy
   

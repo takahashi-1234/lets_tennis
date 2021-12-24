@@ -12,6 +12,7 @@ age=["10代","20代","30代","40代","50代","60代","70代"],
 years_of_experience=["1年未満","1年以上5年未満","5年以上10年未満","10年以上"],
 level=["初心者","中級者","中上級者","上級者"],
 member=["2~10人","10~20人","20~30人","30~40人","40人以上"],
+report=["場所が間違っている","金額が間違っている"],
 
 Admin.create!(
   email: "admin@admin.com",
@@ -71,5 +72,17 @@ Admin.create!(
     event_deadline: event_date,
     created_at: Faker::Date.between(from:'2020-01-01',to:'2021-12-28'),
     updated_at: Faker::Date.between(from:'2020-01-01',to:'2021-12-28')
+    )
+}
+
+20.times{
+    Report.create(
+      customer_id: rand(1..50),
+      court_id: rand(1..50),
+      report_content: report.sample,
+      report_detail: "詳細はHPを見てください。https://〜〜〜〜",
+      is_supported: false,
+      created_at: Faker::Date.between(from:'2020-01-01',to:'2021-12-28'),
+      updated_at: Faker::Date.between(from:'2020-01-01',to:'2021-12-28')
     )
 }
