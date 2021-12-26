@@ -1,7 +1,7 @@
 class Admin::CustomerController < ApplicationController
   def index
     @q=Customer.ransack(params[:q])
-    @customers=@q.result(distinct:true).page(params[:page])
+    @customers=@q.result(distinct:true).page(params[:page]).order(created_at: :desc)
   end
   
   def update
