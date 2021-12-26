@@ -21,6 +21,17 @@ Admin.create!(
   email: "admin@admin.com",
   password: "letstennis"
   )
+Customer.create!(
+  name: テニス太郎,
+  age: age.sample,
+  years_of_experience: years_of_experience.sample,
+  level: level.sample,
+  is_quited: false,
+  email: "sample@example.com",
+  password: "letstennis",
+  created_at: Faker::Date.between(from:'2020-01-01', to:'2021-12-28'),
+  updated_at: Faker::Date.between(from:'2020-01-01', to:'2021-12-28')
+  )
 50.times{
   Customer.create!(
     name: Gimei.name.kanji,
