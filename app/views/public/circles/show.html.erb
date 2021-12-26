@@ -71,20 +71,21 @@
         </div>
         <!--コメントタブ -->
         <div class="tab-box">
-          <!-- コメント一覧の部分テンプレート -->
-          <% if @circle.reviews.exists? %>
-            <span id="comment_index_template">
-              <%= render "public/comments/comment_index",comments: @reviews %>
-            </span>
+          <% if customer_signed_in? %>
+            <!-- コメント一覧の部分テンプレート -->
+            <div id="review_index_template" class="comment_index">
+              <%= render "public/reviews/review_index",reviews: @reviews %>
+            </div>
+            <!-- コメント投稿の部分テンプレート -->
+            <div id="new_review_template" class="new_comment">
+              <%= render "public/reviews/new_review",review: @review,circle: @circle %>
+            </div>
           <% else %>
-            <div class="text-center font-weight-bold my-5">
-              <p>コメントはありません</p>
+            <!--ログイン前はコメント一覧のみ見せる-->
+            <div id="review_index_template" class="before_sign_in">
+             <%= render "public/reviews/review_index",reviews: @reviews %>
             </div>
           <% end %>
-          <!-- コメント投稿の部分テンプレート -->
-          <span id="new_review_template">
-            <%= render "public/reviews/new_review",review: @review,circle: @circle %>
-          </span>
         </div>
       </div>
     </div>

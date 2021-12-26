@@ -59,21 +59,22 @@
     </div>
     <!--コメントタブ -->
     <div class="tab-box">
-      <!-- コメント一覧の部分テンプレート -->
-      <% if @court.comments.exists %>
-        <span id="comment_index_template">
+      <% if customer_signed_in? %>
+        <!-- コメント一覧の部分テンプレート -->
+        <div id="comment_index_template" class="comment_index">
           <%= render "public/comments/comment_index",comments:@comments %>
-        </span>
+        </div>
+        <!-- コメント投稿の部分テンプレート -->
+        
+        <div id="new_comment_template" class="new_comment">
+          <%= render "public/comments/new_comment",comment:@comment,court:@court %>
+        </div>
       <% else %>
-        <div class="text-center font-weight-bold my-5">
-          <p>コメントはありません</p>
+        <!--ログイン前はコメント一覧のみ見せる-->
+        <div id="comment_index_template" class="before_sign_in">
+          <%= render "public/comments/comment_index",comments:@comments %>
         </div>
       <% end %>
-      
-      <!-- コメント投稿の部分テンプレート -->
-      <span id="new_comment_template">
-        <%= render "public/comments/new_comment",comment:@comment,court:@court %>
-      </span>
     </div>
     <!--報告タブ -->
     <div class="tab-box">

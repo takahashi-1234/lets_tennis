@@ -5,7 +5,7 @@ RSpec.describe '顧客モデルのテスト',type: :model do
     let(:customer){build(:customer)}
     
     context 'nameのカラム' do
-      it "空欄でないこと"do
+      it "空欄でないこと" do
         customer.name=""
         is_expected.to eq false
       end
