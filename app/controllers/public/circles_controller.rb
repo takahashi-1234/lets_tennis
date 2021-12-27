@@ -33,6 +33,20 @@ class Public::CirclesController < ApplicationController
   def edit
     @circle=Circle.find(params[:id])
   end
+  def update
+    circle=Circle.find(params[:id])
+    circle.update(circle_params)
+    flash[:notice]="変更しました。"
+    redirect_to circle_path(circle.id)
+  end
+  
+  def destroy
+    circle=Circle.find(params[:id])
+    circle.destroy
+    flash[:notice]="削除しました。"
+    redirect_to root_path
+  end
+  
   private
   def circle_params
     params.require(:circle).permit(:level,:circle_name,:leader_name,:body,:member,:email,:court_id)

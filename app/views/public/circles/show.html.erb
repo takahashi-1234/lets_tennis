@@ -1,3 +1,6 @@
+<div class="alert">
+  <%= flash[:notice] %>
+</div>
 <div class="main-content">
     <div class="left-content bg-light p-3 shadow-sm">
       <div class="mb-3">
@@ -7,7 +10,12 @@
         <tr>
           <td class="col-lg-4">サークル名</td>
           <td class="col-lg-6"><%= @circle.circle_name %><% if current_customer != @circle.customer %><%= link_to "チャットをする",circle_chat_path(@circle.id),class:"btn btn-primary btn-sm ml-3" %><% end %></td>
-          <td id="circle_fav_btn" class="col-lg-2"><% if customer_signed_in? %><%= render "public/circle_favorites/circle_favorite",circle: @circle,circle_favorite: @circle_favorite %><% end %></td>
+          <td id="circle_fav_btn" class="col-lg-2">
+            <!--ログイン中、かつサークル保有者でない場合お気に入りボタンを表示する-->
+            <% if customer_signed_in? && current_customer.circles.exclude?(@circle) %>
+              <%= render "public/circle_favorites/circle_favorite",circle: @circle,circle_favorite: @circle_favorite %>
+            <% end %>
+          </td>
         </tr>
         <tr><td>紹介</td><td><%= @circle.body %></td><td></td></tr>
         <tr><td>レベル<br><span id="openModal">詳細</spna></td><td><%= @circle.level %></td><td></td></tr>
@@ -19,13 +27,13 @@
           <td rowspan=4>管理者機能</td>
         </tr>
         <tr>
-          <td><%= link_to "編集する",edit_circle_path(@circle.id) %></td><td></td>
+          <td><%= link_to "編集する",edit_circle_path(@circle.id),class:"btn btn-success btn-sm" %></td><td></td>
         </tr>
         <tr>
-          <td><%= link_to "削除する",circle_path(@circle.id),method: :delete,"data-confirm"=>"削除していいですか？" %></td><td></td>
+          <td><%= link_to "削除する",circle_path(@circle.id),method: :delete,"data-confirm"=>"削除していいですか？",class:"btn btn-danger btn-sm" %></td><td></td>
         </tr>
         <tr>
-          <td><%= link_to "イベントを投稿する",new_circle_event_path(@circle.id) %></td><td></td>
+          <td><%= link_to "イベントを投稿する",new_circle_event_path(@circle.id),class:"btn btn-primary btn-sm" %></td><td></td>
         </tr>
         <% end %>
       </table>
@@ -52,6 +60,7 @@
                   <td><%= event.title %></td>
                   <td><%= event.body %></td>
                   <td><%= event.event_date %></td>
+                  <!--締切日までの日数で色を変更-->
                   <% if (event.deadline<=5) && (event.deadline>=1) %>
                     <td class="font-weight-bold text-danger">あと<%= event.deadline %>日</td>
                   <% elsif event.deadline<=0 %>
