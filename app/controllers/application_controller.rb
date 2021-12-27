@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     rooms=current_customer.room_members.pluck(:room_id)
     chat_partners=RoomMember.where(room_id:rooms).where.not(customer_id:current_customer.id)
     chat_partners_id=chat_partners.pluck(:customer_id)
-    @total_uncheck_chats=Chat.where(checked:false,customer_id:chat_partners_id).count
+    @total_uncheck_chats=Chat.where(checked:false, customer_id:chat_partners_id, room_id:rooms).count
   end
 
 end

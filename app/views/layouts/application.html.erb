@@ -40,6 +40,7 @@
               <tr>
                 <td><%= link_to "サークルを登録する",new_circle_path,class:"text-dark" %></td>
               </tr>
+            <!--ログイン前後で表示を変える-->
             <% if customer_signed_in? %>
               <tr>
                 <td>

@@ -1,0 +1,2 @@
+<!--部分テンプレートを更新-->
+$("#chats_template").html(' <%= j(render 'public/chats/chats_index', chats: @chats,circle: @circle,chat: @chat) %> ');

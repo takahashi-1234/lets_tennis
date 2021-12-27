@@ -1,0 +1,39 @@
+<div class="chat_index">
+  <div id="scroll-inner">
+    <!--チャットの有無で表示を変更-->
+    <% unless chats.empty? %>
+      <% chats.each do |chat| %>
+        <!--送信と受信の宛先で背景色を変える -->
+        <% if chat.customer==current_customer %>
+          <p class="sender_chat shadow-sm">
+        <% else %>
+          <p class="reciever_chat shadow-sm">
+        <% end %>
+        <!--サークル保有者の場合名前をサークル名にする -->
+        <% if chat.customer.circles.include?(circle) %>
+          <%= circle.circle_name %>：<%= chat.message %>
+        <% else %>
+          <%= chat.customer.name %>：<%= chat.message %>
+        <% end %>
+        <br><%= chat.created_at.to_s(:datetime_jp) %>
+        </p><br>
+      <% end %>
+    <% else %>
+      <p class="my-3">まだチャットはありません</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="new_chat">
+  <%= form_with model:chat,url:circle_chats_path(circle.id),local:true,method: :post do |f| %>
+    <%= f.text_field:message,class:"form-control" ,placeholder:"メッセージを入力" %>
+    <%= f.hidden_field:room_id %>
+    <%= f.submit "送信",class:"btn btn-primary btn-sm mt-2" %>
+  <% end %>
+</div>
+    
+<script>
+//スクロールを一番下に設定
+  let target=document.getElementById('scroll-inner');
+  target.scrollIntoView(false);
+</script>
