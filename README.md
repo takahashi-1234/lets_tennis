@@ -36,7 +36,8 @@ GoogleMap上でテニスコートとそのテニスコートで活動してい�
 
 ## チャレンジ要素一覧
 
-https://docs.google.com/spreadsheets/d/1ZDii-h7X-bQR4qBqMjGXQ8FWz6xPXJWmuXuU7fECO18/edit?usp=sharing
+[チャレンジ要素一覧.xlsx](https://github.com/takahashi-1234/lets_tennis/files/7778760/default.xlsx)
+
 
 ## 開発環境
 
