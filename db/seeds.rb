@@ -22,7 +22,7 @@ Admin.create!(
   password: "letstennis"
   )
 Customer.create!(
-  name: テニス太郎,
+  name: "テニス太郎",
   age: age.sample,
   years_of_experience: years_of_experience.sample,
   level: level.sample,
