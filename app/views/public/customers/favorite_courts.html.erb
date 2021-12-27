@@ -1,4 +1,4 @@
-<%= render "public/courts/court_map",courts:@courts,q:@q %>
+<%= render "public/courts/court_map",courts:@courts,q:@q,url:favorite_courts_path %>
 
 <script>
   let map;
@@ -8,8 +8,8 @@
   function initMap(){
     geocoder=new google.maps.Geocoder()
     map=new google.maps.Map(document.getElementById("map"),{
-      zoom:10,
-      center:{lat:35.6585,lng:139.7486 },
+      zoom:8,
+      center:{lat:36,lng:139 },
       mapId:"1b786f15acc7b7be"
     });
     //アイコンをクリックした時にマップの描画を変更する

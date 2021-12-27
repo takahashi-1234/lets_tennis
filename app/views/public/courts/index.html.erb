@@ -1,4 +1,4 @@
-<%= render "public/courts/court_map",courts:@courts,q:@q %>
+<%= render "public/courts/court_map",courts:@courts,q:@q ,url:root_path %>
 <script>
   let map;
   let marker=[];
@@ -69,6 +69,7 @@
   //リストをクリックすると地図も移動
   function setlocation(lat,lng){
     map.setCenter(new google.maps.LatLng(lat,lng));
+    map.setZoom(15);
   };
   
   //検索窓の設定
