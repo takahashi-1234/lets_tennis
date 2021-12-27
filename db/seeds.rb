@@ -78,7 +78,7 @@ Customer.create!(
 
 200.times{
   event_date=Faker::Date.between(from:'2022-01-01', to:'2022-01-31')
-  Event.create(
+  Event.create!(
     circle_id: rand(1..30),
     title: "参加者募集！",
     body: "ラリーと試合形式がメインです！ここ最近は毎回体験で参加する方がいますので、この機会に是非！",
