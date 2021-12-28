@@ -7,7 +7,7 @@ class Admin::CourtsController < ApplicationController
     court=Court.find(params[:id])
     court.update(court_params)
     results=Geocoder.search([court.latitude,court.longitude])
-    court.address=results.first.address
+    court.update(address: results.first.address[12..100])
     redirect_to admin_root_path
   end
   private

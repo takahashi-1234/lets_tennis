@@ -23,6 +23,7 @@ class Public::CourtsController < ApplicationController
   def create
     @court=Court.new(court_params)
     results=Geocoder.search([@court.latitude,@court.longitude])
+    #日本と郵便番号の部分を除くため12文字目から取得
     @court.address=results.first.address[12..100]
     @court.customer_id=current_customer.id
     if @court.save
