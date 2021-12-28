@@ -29,10 +29,9 @@ GoogleMap上でテニスコートとそのテニスコートで活動してい�
 - 定期的にテニスをしたいと思った時にどこのテニスコートでどんなサークルが活動しているのか検索できます。
 
 ## 設計書
-[ER図](https://github.com/takahashi-1234/lets_tennis/files/7655318/Lets.Tennis_ER.drawio.pdf)  
-[テーブル定義書](https://github.com/takahashi-1234/lets_tennis/files/7655316/Lets.Tennis_.xlsx)  
-[アプリケーション詳細設計](https://github.com/takahashi-1234/lets_tennis/files/7664171/Lets.Tennis_.xlsx)
-[ワイヤーフレームと動線](https://github.com/takahashi-1234/lets_tennis/files/7655317/drawio.pdf)
+[ER図](https://github.com/takahashi-1234/lets_tennis/files/7786294/Lets.Tennis_ER.pdf)
+[テーブル定義書](https://github.com/takahashi-1234/lets_tennis/files/7786300/Lets.Tennis_.xlsx)
+
 
 ## チャレンジ要素一覧
 
