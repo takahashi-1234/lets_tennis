@@ -9,11 +9,11 @@ RSpec.describe '顧客モデルのテスト',type: :model do
         customer.name=""
         is_expected.to eq false
       end
-      it "6文字以下であること" do
+      it "20文字以下であること" do
         customer.name="高橋"
         is_expected.to eq true
       end
-      it "６文字以上の場合" do
+      it "20文字以上の場合" do
         is_expected.to eq false
       end
     end
